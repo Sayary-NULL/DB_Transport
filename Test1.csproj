@@ -40,7 +40,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Main.cs" />
     <Compile Include="Code\ClassTransport.cs" />
     <Compile Include="Code\Contract.cs" />
     <Compile Include="Code\Contractor.cs" />
