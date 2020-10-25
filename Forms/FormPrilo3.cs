@@ -7,13 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Test1.Code;
 
 namespace Test1.Forms
 {
     public partial class FormPrilo3 : Form
     {
         List<Code.Schedule> Schedules;
-        Dictionary<int, ClassA> dict2;
+        Dictionary<int, ClassTransport> dict2;
 
         public FormPrilo3(List<Code.Schedule> schedules)
         {
@@ -27,7 +28,7 @@ namespace Test1.Forms
             DateTime @new = new DateTime();
 
             if (dict2 == null)
-                dict2 = new Dictionary<int, ClassA>();
+                dict2 = new Dictionary<int, ClassTransport>();
             else dict2.Clear();
             
 
@@ -41,7 +42,7 @@ namespace Test1.Forms
                     if (!(dTPWith.Value <= i && i <= dTPBy.Value)) // проверяем промежуток отчета
                         continue;
 
-                    ClassA classA = new ClassA();
+                    ClassTransport classA = new ClassTransport();
 
                     if (dict2.ContainsKey(i.Month))
                         classA = dict2[i.Month];
