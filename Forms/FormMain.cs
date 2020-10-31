@@ -1,21 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows.Interop;
 using Test1.Code;
 
 namespace Test1.Forms
 {
+    enum Status
+    {
+        Rout,
+        Schedule,
+        Contract,
+        Contractor
+    }
+
     public partial class FormMain : Form
     {
         bool sized = false;
+
+        private Status StatusDataGrid;
 
         private List<Schedule> Schedules;
 
@@ -27,12 +32,18 @@ namespace Test1.Forms
 
         ComboBox comboBoxID_SCH;
 
-        //DataGridView dataGrid;
-
         public FormMain()
-        {
+        {     
             InitializeComponent();
-            InitializeComponents();
+            InitializeComponents(); 
+
+            this.Size = System.Windows.Forms.SystemInformation.PrimaryMonitorMaximizedWindowSize;
+            var size = this.Size;
+            int dw = size.Width - 48;
+            dGWMain.Size = new Size(dw, dGWMain.Size.Height);
+            System.Diagnostics.Debug.WriteLine(dGWMain.Size.Width + " " + dGWMain.Size.Height);
+            System.Diagnostics.Debug.WriteLine(System.Windows.Forms.SystemInformation.PrimaryMonitorMaximizedWindowSize.Width + " " + System.Windows.Forms.SystemInformation.PrimaryMonitorMaximizedWindowSize.Height);
+
 
             Schedules = new List<Test1.Code.Schedule>();
             Routs = new List<Rout>();
@@ -40,6 +51,7 @@ namespace Test1.Forms
             Contractors = new List<Contractor>();
 
             LNameDataGrid.Text = "";
+            StatusDataGrid = new Status();
             LoadGridRout();
         }
 
@@ -82,7 +94,7 @@ namespace Test1.Forms
 
         private void расчитатьToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Test1.Forms.FormPrilo3 formPrilo3 = new Test1.Forms.FormPrilo3(Schedules);
+            Test1.Forms.FormPrilo3 formPrilo3 = new Test1.Forms.FormPrilo3();
             formPrilo3.Show();
         }
 
@@ -108,26 +120,9 @@ namespace Test1.Forms
             dGWMain.RowsDefaultCellStyle.Font = new Font("Microsoft Sans Serif", fon.Size - 1);
         }
 
-        private void добавитьЗаписьToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (comboBoxID_SCH.SelectedIndex != 0)
-            {
-                int ID_NUM = 0;
-                int ID_HIS = 1;
-                if (Schedules.Count() != 0)
-                {
-                    ID_NUM = Schedules.Last().ID_Number_Schedule;
-                    ID_HIS = Schedules.Last().ID_History;
-                }
-                
-                FormNewRecord formComp = new FormNewRecord(ID_NUM, ID_HIS);
-                formComp.ShowDialog();
-            }
-            else MessageBox.Show("Выбирете конкретный маршрут!");
-        }
-
         private void маршрутToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            StatusDataGrid = Status.Rout;
             LoadGridRout();
         }
 
@@ -215,19 +210,19 @@ namespace Test1.Forms
 
                     while (rez.Read())
                     {
-                        Rout rout = new Rout();
+                        Rout rout = new Rout
+                        {
+                            ID = rez.GetInt32(0),
+                            ID_History = rez.GetInt32(1),
+                            ID_Contract = rez.GetInt32(2),
+                            Registr = rez.GetString(3),
+                            Poryd = rez.GetString(4),
+                            TypeOfRegular = rez.GetString(5),
+                            TypeOnOut = rez.GetString(6),
+                            Name = rez.GetString(7),
+                            Type_communication = rez.GetString(8)
+                        };
 
-                        rout.ID = rez.GetInt32(0);
-                        rout.ID_History = rez.GetInt32(1);
-                        rout.ID_Contract = rez.GetInt32(2);
-                        rout.Registr = rez.GetString(3);
-                        rout.Poryd = rez.GetString(4);
-                        rout.TypeOfRegular = rez.GetString(5);
-                        rout.TypeOnOut = rez.GetString(6);
-                        rout.Name = rez.GetString(7);
-                        rout.Type_communication = rez.GetString(8);
-                        rout.INN = rez.GetInt64(9);
-                        
                         dGWMain.Rows.Add(rout.ToRow());
                         Routs.Add(rout);
                     }
@@ -269,6 +264,7 @@ namespace Test1.Forms
                         cont.With = rez.GetDateTime(2);
                         cont.By = rez.GetDateTime(3);
                         cont.money = rez.GetDecimal(4);
+                        cont.INN = rez.GetInt64(5);
 
                         dGWMain.Rows.Add(cont.ToRow());
                         Contracts.Add(cont);
@@ -325,17 +321,75 @@ namespace Test1.Forms
 
         private void вариантРейсаToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            StatusDataGrid = Status.Schedule;
             LoadGridSchedules();
         }
 
         private void договорToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            StatusDataGrid = Status.Contract;
             LoadGridContract();
         }
 
         private void подрятчикToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            StatusDataGrid = Status.Contractor;
             LoadGridContractor();
+        }
+
+        private void маршрутToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void вариантРейсаToolStripMenuItem1_Click_1(object sender, EventArgs e)
+        {
+            if (comboBoxID_SCH.SelectedIndex != 0)
+            {
+                int ID_NUM = 0;
+                int ID_HIS = 1;
+                if (Schedules.Count() != 0)
+                {
+                    ID_NUM = Schedules.Last().ID_Number_Schedule;
+                    ID_HIS = Schedules.Last().ID_History;
+                }
+
+                FormNewRecord formComp = new FormNewRecord(ID_NUM + 1, ID_HIS);
+                formComp.ShowDialog();
+            }
+            else MessageBox.Show("Выбирете конкретный маршрут!");
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            switch (StatusDataGrid)
+            {
+                case Status.Rout:
+                    LoadGridRout();
+                    break;
+                case Status.Schedule:
+                    LoadGridSchedules();
+                    break;
+                case Status.Contract:
+                    LoadGridContract();
+                    break;
+                case Status.Contractor:
+                    LoadGridContractor();
+                    break;
+            }
+        }
+
+        private void FormMain_MaximumSizeChanged(object sender, EventArgs e)
+        {
+            //System.Diagnostics.Debug.WriteLine(this.Size.Width + " " + this.Size.Height);
+            //WinForms.SystemInformation.PrimaryMonitorSize.Width
+            //System.Diagnostics.Debug.WriteLine(System.Windows.Forms.SystemInformation.PrimaryMonitorMaximizedWindowSize.Width + " " + System.Windows.Forms.SystemInformation.PrimaryMonitorMaximizedWindowSize.Height);
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(this, System.Windows.Forms.SystemInformation.PrimaryMonitorMaximizedWindowSize.Width + " " + System.Windows.Forms.SystemInformation.PrimaryMonitorMaximizedWindowSize.Height, "Ифно", MessageBoxButtons.OK);
+
         }
     }
 }
