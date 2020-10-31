@@ -210,7 +210,8 @@ namespace Test1.Code
 
             foreach (var item in rez)
             {
-                DayOfWork.Add(Int32.Parse(item));
+                if(item != "")
+                    DayOfWork.Add(Int32.Parse(item));
             }
         }
 
