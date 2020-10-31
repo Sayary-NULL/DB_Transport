@@ -13,8 +13,8 @@ namespace Test1.Code
         public int ID_Contract { get; set; }
         public string Registr { get; set; }
         public string Poryd { get; set; }
-        public string TypeOfRegular { get; set; }
         public string TypeOnOut { get; set; }
+        public string TypeOfRegular { get; set; }
         public string Name { get; set; }
         public string Type_communication { get; set; }
 
@@ -27,8 +27,8 @@ namespace Test1.Code
             rez[2] = ID_Contract.ToString();
             rez[3] = Registr;
             rez[4] = Poryd;
-            rez[5] = TypeOfRegular;
-            rez[6] = TypeOnOut;
+            rez[5] = TypeOnOut;
+            rez[6] = TypeOfRegular;
             rez[7] = Name;
             rez[8] = Type_communication;
 
