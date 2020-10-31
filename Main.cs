@@ -8,7 +8,6 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using Test1.Code;
-using Word = Microsoft.Office.Interop.Word;
 
 namespace Test1
 {
@@ -32,7 +31,7 @@ namespace Test1
             StaticValues.ConnectionString = String.Format(Test1.DB_Resource.StrConnection, Test1.Code.StaticValues.IPAdress, Test1.Code.StaticValues.Login, Test1.Code.StaticValues.Password);
             Forms.FormMain formMain = new Forms.FormMain();
             formMain.ShowDialog();
-            
+
             //Console.ReadKey();
         }
     }
