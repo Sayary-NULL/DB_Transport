@@ -17,11 +17,10 @@ namespace Test1.Code
         public string TypeOnOut { get; set; }
         public string Name { get; set; }
         public string Type_communication { get; set; }
-        public long INN { get; set; }
 
         public string[] ToRow()
         {
-            string[] rez = new string[10];
+            string[] rez = new string[9];
 
             rez[0] = ID.ToString();
             rez[1] = ID_History.ToString();
@@ -32,7 +31,6 @@ namespace Test1.Code
             rez[6] = TypeOnOut;
             rez[7] = Name;
             rez[8] = Type_communication;
-            rez[9] = INN.ToString();
 
             return rez;
         }
