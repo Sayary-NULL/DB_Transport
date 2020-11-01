@@ -40,6 +40,24 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\FormAddRout.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormAddRout.Designer.cs">
+      <DependentUpon>FormAddRout.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormSearchConractor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormSearchConractor.Designer.cs">
+      <DependentUpon>FormSearchConractor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormSearchConrtact.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormSearchConrtact.Designer.cs">
+      <DependentUpon>FormSearchConrtact.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormSearchRout.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -119,6 +137,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>DB_Resource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormAddRout.resx">
+      <DependentUpon>FormAddRout.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormCalcDateForClass.resx">
       <DependentUpon>FormCalcDateForClass.cs</DependentUpon>
     </EmbeddedResource>
@@ -136,6 +157,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormPrilo3.resx">
       <DependentUpon>FormPrilo3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormSearchConractor.resx">
+      <DependentUpon>FormSearchConractor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormSearchConrtact.resx">
+      <DependentUpon>FormSearchConrtact.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormSearchRout.resx">
       <DependentUpon>FormSearchRout.cs</DependentUpon>

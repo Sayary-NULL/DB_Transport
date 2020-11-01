@@ -339,7 +339,8 @@ namespace Test1.Forms
 
         private void маршрутToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-
+            var addrout = new FormAddRout();
+            addrout.ShowDialog();
         }
 
         private void вариантРейсаToolStripMenuItem1_Click_1(object sender, EventArgs e)
