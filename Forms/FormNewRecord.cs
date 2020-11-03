@@ -35,9 +35,50 @@ namespace Test1.Forms
             FormCalcDateForClass calcDateForClass = new FormCalcDateForClass();
             calcDateForClass.ShowDialog();
 
-            if(!calcDateForClass.isClose)
+            if (!calcDateForClass.isClose)
             {
-                textBox4.Text = calcDateForClass.JSON;
+                if (calcDateForClass.checkBox1.Checked)
+                {
+                    textBox4.Text = calcDateForClass.JSON;
+                    textBox14.Text = "1,";
+                }
+                if (calcDateForClass.checkBox2.Checked)
+                {
+                    textBox5.Text = calcDateForClass.JSON;
+                    textBox14.Text += "2,";
+                }
+                if (calcDateForClass.checkBox3.Checked)
+                {
+                    textBox6.Text = calcDateForClass.JSON;
+                    textBox14.Text += "3,";
+                }
+                if (calcDateForClass.checkBox4.Checked)
+                {
+                    textBox7.Text = calcDateForClass.JSON;
+                    textBox14.Text += "4,";
+                }
+                if (calcDateForClass.checkBox5.Checked)
+                {
+                    textBox8.Text = calcDateForClass.JSON;
+                    textBox14.Text += "5,";
+                }
+                if (calcDateForClass.checkBox6.Checked)
+                {
+                    textBox9.Text = calcDateForClass.JSON;
+                    textBox14.Text += "6,";
+                }
+                if (calcDateForClass.checkBox7.Checked)
+                {
+                    textBox10.Text = calcDateForClass.JSON;
+                    textBox14.Text += "7,";
+                }
+                if (calcDateForClass.checkBox8.Checked)
+                {
+                    textBox11.Text = calcDateForClass.JSON;
+                    textBox14.Text += "8,";
+                }
+
+                textBox14.Text = textBox14.Text.Remove(textBox14.Text.Length - 1);
             }
         }
 
@@ -192,6 +233,11 @@ namespace Test1.Forms
                 }
             }
             
+            this.Close();
+        }
+
+        private void button3_Click_1(object sender, EventArgs e)
+        {
             this.Close();
         }
     }
