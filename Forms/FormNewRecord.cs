@@ -173,7 +173,7 @@ namespace Test1.Forms
             com.Parameters.Add(With);
             SqlParameter By = new SqlParameter("@By", dateTimePicker2.Value);
             com.Parameters.Add(By);
-            SqlParameter DayOfWork = new SqlParameter("@day", "");
+            SqlParameter DayOfWork = new SqlParameter("@day", textBox14.Text);
             com.Parameters.Add(DayOfWork);
 
             using (SqlConnection con = new SqlConnection(StaticValues.ConnectionString))

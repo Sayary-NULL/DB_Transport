@@ -190,7 +190,7 @@ namespace Test1.Forms
         private void button1_Click(object sender, EventArgs e)
         {
             Font fon = dGWMain.ColumnHeadersDefaultCellStyle.Font;
-            if(fon.Size > 8 || fon.Size < 12)
+            if( 8 < fon.Size + 1 && fon.Size + 1 < 14)
             {
                 dGWMain.ColumnHeadersDefaultCellStyle.Font = new Font("Microsoft Sans Serif", fon.Size + 1);
 
@@ -204,7 +204,7 @@ namespace Test1.Forms
         private void button2_Click(object sender, EventArgs e)
         {
             Font fon = dGWMain.ColumnHeadersDefaultCellStyle.Font;
-            if (fon.Size > 8 || fon.Size < 12)
+            if (8 < fon.Size - 1 && fon.Size - 1 < 14)
             {
                 dGWMain.ColumnHeadersDefaultCellStyle.Font = new Font("Microsoft Sans Serif", fon.Size - 1);
 
@@ -486,11 +486,11 @@ namespace Test1.Forms
 
         private void button4_Click(object sender, EventArgs e)
         {
-            //MessageBox.Show(this, System.Windows.Forms.SystemInformation.PrimaryMonitorMaximizedWindowSize.Width + " " + System.Windows.Forms.SystemInformation.PrimaryMonitorMaximizedWindowSize.Height, "Ифно", MessageBoxButtons.OK);
-            for(int i = 0; i < dGWMain.Columns.Count; i++)
+            MessageBox.Show(this, System.Windows.Forms.SystemInformation.PrimaryMonitorMaximizedWindowSize.Width + " " + System.Windows.Forms.SystemInformation.PrimaryMonitorMaximizedWindowSize.Height, "Ифно", MessageBoxButtons.OK);
+            /*for(int i = 0; i < dGWMain.Columns.Count; i++)
             {
                 MessageBox.Show(dGWMain.Columns[i].Width.ToString());
-            }
+            }*/
         }
 
         private void dGWMain_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)

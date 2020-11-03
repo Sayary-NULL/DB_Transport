@@ -101,10 +101,10 @@ namespace Test1.Forms
             SqlParameter typeofmes;
 
             if(comboBox1.SelectedIndex == 0)
-                typeofmes = new SqlParameter("@typeofmes", "городской");
+                typeofmes = new SqlParameter("@typeofmes", "Городской");
             else if(comboBox1.SelectedIndex == 1)
-                typeofmes = new SqlParameter("@typeofmes", "пригородный");
-            else typeofmes = new SqlParameter("@typeofmes", "междугородный");
+                typeofmes = new SqlParameter("@typeofmes", "Пригородный");
+            else typeofmes = new SqlParameter("@typeofmes", "Междугородный");
 
             SqlCommand com = new SqlCommand("INSERT INTO Маршрут ([ID],[ID_Истории],[ID_Договор],[Регистрационный_номер],[Порядковый_номер],[Вид_регулярной_перевозки],[Порядок_посадки_и_высадки_пассажиров],[Наименование],[Тип_сообщения]) " +
                                                          "VALUES (@id, 1, @contract, @reestr, @por, @poryd, @typeof, @name, @typeofmes)");
