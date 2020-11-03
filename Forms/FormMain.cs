@@ -73,6 +73,95 @@ namespace Test1.Forms
             comboBoxID_SCH.SelectedIndex = 0;
         }
 
+        private void LoadRoutColums()
+        {
+            DataGridViewColumn idRout = new DataGridViewTextBoxColumn();
+            idRout.Name = "ID";
+            idRout.Width = 55;
+            idRout.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+
+            DataGridViewColumn idhist = new DataGridViewTextBoxColumn();
+            idhist.Name = "ID_hist";
+            idhist.HeaderText = "ID Истории";
+            idhist.Width = 75;
+            idhist.Visible = false;
+            idhist.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+
+            DataGridViewColumn idcontract = new DataGridViewTextBoxColumn();
+            idcontract.Name = "ID_contract";
+            idcontract.HeaderText = "ID Договор";
+            idcontract.Width = 75;
+            idcontract.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+
+            DataGridViewColumn reestrnumber = new DataGridViewTextBoxColumn();
+            reestrnumber.Name = "reestr";
+            reestrnumber.HeaderText = "Регистрационный номер";
+            reestrnumber.HeaderCell.Style.WrapMode = DataGridViewTriState.True;
+            reestrnumber.Width = 100;
+            reestrnumber.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+
+            DataGridViewColumn pornumber = new DataGridViewTextBoxColumn();
+            pornumber.Name = "poryd";
+            pornumber.HeaderText = "Порядковый номер";
+            pornumber.HeaderCell.Style.WrapMode = DataGridViewTriState.True;
+            pornumber.Width = 75;
+            pornumber.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+
+            DataGridViewColumn typepere = new DataGridViewTextBoxColumn();
+            typepere.Name = "typepere";
+            typepere.HeaderText = "Вид регулярной перевозки";
+            typepere.HeaderCell.Style.WrapMode = DataGridViewTriState.True;
+            typepere.Width = 70;
+            typepere.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+
+            DataGridViewColumn typeofinout = new DataGridViewTextBoxColumn();
+            typeofinout.Name = "typeofinout";
+            typeofinout.HeaderText = "Порядок посадки и высадки пассажиров";
+            typeofinout.HeaderCell.Style.WrapMode = DataGridViewTriState.True;
+            typeofinout.Width = 75;
+            typeofinout.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+
+            DataGridViewColumn name = new DataGridViewTextBoxColumn();
+            name.Name = "name";
+            name.HeaderText = "Наименование";
+            name.HeaderCell.Style.WrapMode = DataGridViewTriState.True;
+            name.Width = 100;
+            name.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+
+            DataGridViewColumn typemess = new DataGridViewTextBoxColumn();
+            typemess.Name = "typeofmess";
+            typemess.HeaderText = "Тип сообщения";
+            typemess.Width = 100;
+            typemess.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+
+            dGWMain.Rows.Clear();
+            dGWMain.Columns.Clear();
+
+            dGWMain.Columns.Add(idRout);
+            dGWMain.Columns.Add(name);
+            dGWMain.Columns.Add(typemess);
+            dGWMain.Columns.Add(idhist);
+            dGWMain.Columns.Add(idcontract);
+            dGWMain.Columns.Add(reestrnumber);
+            dGWMain.Columns.Add(pornumber);
+            dGWMain.Columns.Add(typepere);
+            dGWMain.Columns.Add(typeofinout);
+        }
+
+        private void LoadDataToGridRout(Rout rout)
+        {
+            var ind = dGWMain.Rows.Add(rout.ID.ToString());
+            dGWMain["ID", ind].Value = rout.ID;
+            dGWMain["ID_hist", ind].Value = rout.ID_History;
+            dGWMain["ID_contract", ind].Value = rout.ID_Contract;
+            dGWMain["reestr", ind].Value = rout.Registr;
+            dGWMain["poryd", ind].Value = rout.Poryd;
+            dGWMain["typepere", ind].Value = rout.TypeOfRegular;
+            dGWMain["typeofinout", ind].Value = rout.TypeOnOut;
+            dGWMain["name", ind].Value = rout.Name;
+            dGWMain["typeofmess", ind].Value = rout.Type_communication;
+        }
+
         private void InitializeComponents()
         {
             comboBoxID_SCH = new ComboBox();
@@ -101,23 +190,29 @@ namespace Test1.Forms
         private void button1_Click(object sender, EventArgs e)
         {
             Font fon = dGWMain.ColumnHeadersDefaultCellStyle.Font;
-            dGWMain.ColumnHeadersDefaultCellStyle.Font = new Font("Microsoft Sans Serif", fon.Size + 1);
+            if(fon.Size > 8 || fon.Size < 12)
+            {
+                dGWMain.ColumnHeadersDefaultCellStyle.Font = new Font("Microsoft Sans Serif", fon.Size + 1);
 
-            fon = dGWMain.RowsDefaultCellStyle.Font;
-            if (fon == null)
-                fon = new Font("Microsoft Sans Serif", 8);
-            dGWMain.RowsDefaultCellStyle.Font = new Font("Microsoft Sans Serif", fon.Size + 1);
+                fon = dGWMain.RowsDefaultCellStyle.Font;
+                if (fon == null)
+                    fon = new Font("Microsoft Sans Serif", 8);
+                dGWMain.RowsDefaultCellStyle.Font = new Font("Microsoft Sans Serif", fon.Size + 1);
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             Font fon = dGWMain.ColumnHeadersDefaultCellStyle.Font;
-            dGWMain.ColumnHeadersDefaultCellStyle.Font = new Font("Microsoft Sans Serif", fon.Size - 1);
+            if (fon.Size > 8 || fon.Size < 12)
+            {
+                dGWMain.ColumnHeadersDefaultCellStyle.Font = new Font("Microsoft Sans Serif", fon.Size - 1);
 
-            fon = dGWMain.RowsDefaultCellStyle.Font;
-            if (fon == null)
-                fon = new Font("Microsoft Sans Serif", 8);
-            dGWMain.RowsDefaultCellStyle.Font = new Font("Microsoft Sans Serif", fon.Size - 1);
+                fon = dGWMain.RowsDefaultCellStyle.Font;
+                if (fon == null)
+                    fon = new Font("Microsoft Sans Serif", 8);
+                dGWMain.RowsDefaultCellStyle.Font = new Font("Microsoft Sans Serif", fon.Size - 1);
+            }
         }
 
         private void маршрутToolStripMenuItem_Click(object sender, EventArgs e)
@@ -188,8 +283,9 @@ namespace Test1.Forms
             string Table = "Маршрут";
             LNameDataGrid.Text = Table;
 
-            dGWMain.Rows.Clear();
-            dGWMain.Columns.Clear();
+            /*dGWMain.Rows.Clear();
+            dGWMain.Columns.Clear();*/
+            LoadRoutColums();
             Routs.Clear();
 
             string sqlexp = $"SELECT * FROM {Table} ORDER BY ID, ID_Истории"; 
@@ -205,8 +301,8 @@ namespace Test1.Forms
 
                 if (rez.HasRows)
                 {
-                    for (int i = 0; i < countcolums; i++)
-                        dGWMain.Columns.Add(rez.GetName(i), rez.GetName(i));
+                    /*for (int i = 0; i < countcolums; i++)
+                        dGWMain.Columns.Add(rez.GetName(i), rez.GetName(i));*/
 
                     while (rez.Read())
                     {
@@ -223,7 +319,8 @@ namespace Test1.Forms
                             Type_communication = rez.GetString(8)
                         };
 
-                        dGWMain.Rows.Add(rout.ToRow());
+                        //dGWMain.Rows.Add(rout.ToRow());
+                        LoadDataToGridRout(rout);
                         Routs.Add(rout);
                     }
                 }
@@ -389,8 +486,17 @@ namespace Test1.Forms
 
         private void button4_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(this, System.Windows.Forms.SystemInformation.PrimaryMonitorMaximizedWindowSize.Width + " " + System.Windows.Forms.SystemInformation.PrimaryMonitorMaximizedWindowSize.Height, "Ифно", MessageBoxButtons.OK);
+            //MessageBox.Show(this, System.Windows.Forms.SystemInformation.PrimaryMonitorMaximizedWindowSize.Width + " " + System.Windows.Forms.SystemInformation.PrimaryMonitorMaximizedWindowSize.Height, "Ифно", MessageBoxButtons.OK);
+            for(int i = 0; i < dGWMain.Columns.Count; i++)
+            {
+                MessageBox.Show(dGWMain.Columns[i].Width.ToString());
+            }
+        }
 
+        private void dGWMain_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if(e.RowIndex != -1)
+            MessageBox.Show(this, "Будет! Все будет! \r\n" +(e.RowIndex + 1) + " " + dGWMain.Rows[e.RowIndex].Cells[0].Value, "Инфо", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }
