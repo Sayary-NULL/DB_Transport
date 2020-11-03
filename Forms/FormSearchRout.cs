@@ -15,6 +15,8 @@ namespace Test1.Forms
     public partial class FormSearchRout : Form
     {
         private List<Rout> Routs;
+        private List<string> IDs;
+        private List<string> SerialNumbers;
         public Rout SelecetRout;
         public bool IsClose = false;
 
@@ -24,6 +26,30 @@ namespace Test1.Forms
             Routs = new List<Rout>();
 
             SelecetRout = null;
+            IDs = new List<string>();
+            SerialNumbers = new List<string>();
+            loadDataToList();
+        }
+
+        private void loadDataToList()
+        {
+            using(SqlConnection connect = new SqlConnection(StaticValues.ConnectionString))
+            {
+                SqlCommand com = new SqlCommand("SELECT ID, Порядковый_номер FROM Маршрут", connect);
+                connect.Open();
+                var rez = com.ExecuteReader();
+
+                if(rez.HasRows)
+                {
+                    while(rez.Read())
+                    {
+                        IDs.Add(rez.GetInt32(0).ToString());
+                        comboBox1.Items.Add(rez.GetInt32(0).ToString());
+                        SerialNumbers.Add(rez.GetString(1));
+                        comboBox2.Items.Add(rez.GetString(1));
+                    }
+                }
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -31,23 +57,23 @@ namespace Test1.Forms
             Routs.Clear();
             dataGridView1.Columns.Clear();
 
-            if(textBox1.Text == "" && textBox2.Text == "" && textBox3.Text == "")
+            if(comboBox1.Text == "" && comboBox2.Text == "" && textBox3.Text == "")
             {
                 MessageBox.Show(this,"Введите данные для поиска", "Ошибка поиска", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
             long ID = 0;
-            if (textBox1.Text.Length != 0)
+            if (comboBox1.Text.Length != 0)
             {
-                if (!Int64.TryParse(textBox1.Text, out ID))
+                if (!Int64.TryParse(comboBox1.Text, out ID))
                 {
                     MessageBox.Show(this, "Ошибка преобразования ID", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
             }
 
-            string por = textBox2.Text;
+            string por = comboBox2.Text;
             string city = textBox3.Text;
 
             string exp = "Select * From Маршрут Where ";
@@ -130,6 +156,53 @@ namespace Test1.Forms
             SelecetRout = Routs[dataGridView1.SelectedRows[0].Index];
             IsClose = true;
             this.Close();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void comboBox1_Enter(object sender, EventArgs e)
+        {
+            comboBox1.DroppedDown = true;
+        }
+
+        private void comboBox1_TextUpdate(object sender, EventArgs e)
+        {
+            comboBox1.Items.Clear();
+            var text = comboBox1.Text;
+            foreach (var item in IDs)
+            {
+                if (item.StartsWith(text) || String.IsNullOrWhiteSpace(text) || String.IsNullOrEmpty(text))
+                    comboBox1.Items.Add(item);
+            }
+            comboBox1.SelectionStart = comboBox1.Text.Length;
+            comboBox1.DroppedDown = true;
+        }
+
+        private void comboBox2_TextUpdate(object sender, EventArgs e)
+        {
+            comboBox2.Items.Clear();
+            var text = comboBox2.Text;
+            foreach (var item in SerialNumbers)
+            {
+                if (item.StartsWith(text) || String.IsNullOrWhiteSpace(text) || String.IsNullOrEmpty(text))
+                    comboBox2.Items.Add(item);
+            }
+            comboBox2.SelectionStart = comboBox2.Text.Length;
+            comboBox2.DroppedDown = true;
+        }
+
+        private void comboBox2_Enter(object sender, EventArgs e)
+        {
+            comboBox2.DroppedDown = true;
+        }
+
+        private void KeyPressEnter(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+                button1_Click(sender, new EventArgs());
         }
     }
 }
