@@ -55,123 +55,6 @@ namespace Test1.Forms
             LoadGridRout();
         }
 
-        private void LoadComboBox()
-        {
-            comboBoxID_SCH.Items.Add("All");
-            using (SqlConnection connect = new SqlConnection(String.Format(Test1.DB_Resource.StrConnection, Test1.Code.StaticValues.IPAdress, Test1.Code.StaticValues.Login, Test1.Code.StaticValues.Password)))
-            {
-                SqlCommand com = new SqlCommand("SELECT ID From Маршрут GROUP BY ID", connect);
-                connect.Open();
-                var rez = com.ExecuteReader();
-
-                if(rez.HasRows)
-                {
-                    while (rez.Read())
-                        comboBoxID_SCH.Items.Add(rez.GetInt32(0));
-                }
-            }
-            comboBoxID_SCH.SelectedIndex = 0;
-        }
-
-        private void LoadRoutColums()
-        {
-            DataGridViewColumn idRout = new DataGridViewTextBoxColumn();
-            idRout.Name = "ID";
-            idRout.Width = 55;
-            idRout.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-
-            DataGridViewColumn idhist = new DataGridViewTextBoxColumn();
-            idhist.Name = "ID_hist";
-            idhist.HeaderText = "ID Истории";
-            idhist.Width = 75;
-            idhist.Visible = false;
-            idhist.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-
-            DataGridViewColumn idcontract = new DataGridViewTextBoxColumn();
-            idcontract.Name = "ID_contract";
-            idcontract.HeaderText = "ID Договор";
-            idcontract.Width = 75;
-            idcontract.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-
-            DataGridViewColumn reestrnumber = new DataGridViewTextBoxColumn();
-            reestrnumber.Name = "reestr";
-            reestrnumber.HeaderText = "Регистрационный номер";
-            reestrnumber.HeaderCell.Style.WrapMode = DataGridViewTriState.True;
-            reestrnumber.Width = 100;
-            reestrnumber.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-
-            DataGridViewColumn pornumber = new DataGridViewTextBoxColumn();
-            pornumber.Name = "poryd";
-            pornumber.HeaderText = "Порядковый номер";
-            pornumber.HeaderCell.Style.WrapMode = DataGridViewTriState.True;
-            pornumber.Width = 75;
-            pornumber.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-
-            DataGridViewColumn typepere = new DataGridViewTextBoxColumn();
-            typepere.Name = "typepere";
-            typepere.HeaderText = "Вид регулярной перевозки";
-            typepere.HeaderCell.Style.WrapMode = DataGridViewTriState.True;
-            typepere.Width = 70;
-            typepere.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-
-            DataGridViewColumn typeofinout = new DataGridViewTextBoxColumn();
-            typeofinout.Name = "typeofinout";
-            typeofinout.HeaderText = "Порядок посадки и высадки пассажиров";
-            typeofinout.HeaderCell.Style.WrapMode = DataGridViewTriState.True;
-            typeofinout.Width = 75;
-            typeofinout.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-
-            DataGridViewColumn name = new DataGridViewTextBoxColumn();
-            name.Name = "name";
-            name.HeaderText = "Наименование";
-            name.HeaderCell.Style.WrapMode = DataGridViewTriState.True;
-            name.Width = 100;
-            name.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-
-            DataGridViewColumn typemess = new DataGridViewTextBoxColumn();
-            typemess.Name = "typeofmess";
-            typemess.HeaderText = "Тип сообщения";
-            typemess.Width = 100;
-            typemess.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-
-            dGWMain.Rows.Clear();
-            dGWMain.Columns.Clear();
-
-            dGWMain.Columns.Add(idRout);
-            dGWMain.Columns.Add(name);
-            dGWMain.Columns.Add(typemess);
-            dGWMain.Columns.Add(idhist);
-            dGWMain.Columns.Add(idcontract);
-            dGWMain.Columns.Add(reestrnumber);
-            dGWMain.Columns.Add(pornumber);
-            dGWMain.Columns.Add(typepere);
-            dGWMain.Columns.Add(typeofinout);
-        }
-
-        private void LoadDataToGridRout(Rout rout)
-        {
-            var ind = dGWMain.Rows.Add(rout.ID.ToString());
-            dGWMain["ID", ind].Value = rout.ID;
-            dGWMain["ID_hist", ind].Value = rout.ID_History;
-            dGWMain["ID_contract", ind].Value = rout.ID_Contract;
-            dGWMain["reestr", ind].Value = rout.Registr;
-            dGWMain["poryd", ind].Value = rout.Poryd;
-            dGWMain["typepere", ind].Value = rout.TypeOfRegular;
-            dGWMain["typeofinout", ind].Value = rout.TypeOnOut;
-            dGWMain["name", ind].Value = rout.Name;
-            dGWMain["typeofmess", ind].Value = rout.Type_communication;
-        }
-
-        private void InitializeComponents()
-        {
-            comboBoxID_SCH = new ComboBox();
-            /*comboBoxID_SCH.Top = 25;
-            comboBoxID_SCH.Left = 15;
-            comboBoxID_SCH.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBoxID_SCH.SelectedValueChanged += ChangeComboBox;
-            this.Controls.Add(comboBoxID_SCH);*/
-        }
-
         private void FormMain_SizeChanged(object sender, EventArgs e)
         {
             if(!sized)
@@ -225,8 +108,7 @@ namespace Test1.Forms
         {
             string Table = "Вариант_рейса";
             LNameDataGrid.Text = Table;
-            dGWMain.Rows.Clear();
-            dGWMain.Columns.Clear();
+            loadData.LoadScheduleColums();
             Schedules.Clear();
 
             string sqlexp;
@@ -245,9 +127,6 @@ namespace Test1.Forms
 
                 if (rez.HasRows)
                 {
-                    for (int i = 0; i < countcolums; i++)
-                        dGWMain.Columns.Add(rez.GetName(i), rez.GetName(i));
-
                     while (rez.Read())
                     {
                         Test1.Code.Schedule schedule = new Test1.Code.Schedule();
@@ -272,56 +151,7 @@ namespace Test1.Forms
 
                         schedule.SetDayOfWork(rez.GetString(15));
                         Schedules.Add(schedule);
-                        dGWMain.Rows.Add(schedule.ToRows());
-                    }
-                }
-            }
-        }
-
-        private void LoadGridRout()
-        {
-            string Table = "Маршрут";
-            LNameDataGrid.Text = Table;
-
-            /*dGWMain.Rows.Clear();
-            dGWMain.Columns.Clear();*/
-            LoadRoutColums();
-            Routs.Clear();
-
-            string sqlexp = $"SELECT * FROM {Table} ORDER BY ID, ID_Истории"; 
-
-            using (SqlConnection connect = new SqlConnection(StaticValues.ConnectionString))
-            {
-                connect.Open();
-                SqlCommand com = new SqlCommand(sqlexp, connect);
-                SqlCommand countColums = new SqlCommand($"SELECT Count(COLUMN_NAME) FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '{Table}'", connect);
-
-                var countcolums = (int)countColums.ExecuteScalar();
-                var rez = com.ExecuteReader();
-
-                if (rez.HasRows)
-                {
-                    /*for (int i = 0; i < countcolums; i++)
-                        dGWMain.Columns.Add(rez.GetName(i), rez.GetName(i));*/
-
-                    while (rez.Read())
-                    {
-                        Rout rout = new Rout
-                        {
-                            ID = rez.GetInt32(0),
-                            ID_History = rez.GetInt32(1),
-                            ID_Contract = rez.GetInt32(2),
-                            Registr = rez.GetString(3),
-                            Poryd = rez.GetString(4),
-                            TypeOfRegular = rez.GetString(5),
-                            TypeOnOut = rez.GetString(6),
-                            Name = rez.GetString(7),
-                            Type_communication = rez.GetString(8)
-                        };
-
-                        //dGWMain.Rows.Add(rout.ToRow());
-                        LoadDataToGridRout(rout);
-                        Routs.Add(rout);
+                        loadData.LoadDataToGridSchedule(schedule);
                     }
                 }
             }
@@ -331,9 +161,7 @@ namespace Test1.Forms
         {
             string Table = "Договор";
             LNameDataGrid.Text = Table;
-
-            dGWMain.Rows.Clear();
-            dGWMain.Columns.Clear();
+            loadData.LoadContractColums();
             Contracts.Clear();
 
             string sqlexp = $"SELECT * FROM {Table} ORDER BY ID";
@@ -349,9 +177,6 @@ namespace Test1.Forms
 
                 if (rez.HasRows)
                 {
-                    for (int i = 0; i < countcolums; i++)
-                        dGWMain.Columns.Add(rez.GetName(i), rez.GetName(i));
-
                     while (rez.Read())
                     {
                         Contract cont = new Contract();
@@ -363,7 +188,7 @@ namespace Test1.Forms
                         cont.money = rez.GetDecimal(4);
                         cont.INN = rez.GetInt64(5);
 
-                        dGWMain.Rows.Add(cont.ToRow());
+                        loadData.LoadDataToGridContract(cont);
                         Contracts.Add(cont);
                     }
                 }
@@ -374,8 +199,7 @@ namespace Test1.Forms
         {
             string Table = "Подрядчик";
             LNameDataGrid.Text = Table;
-            dGWMain.Rows.Clear();
-            dGWMain.Columns.Clear();
+            loadData.LoadContractorColums();
             Contracts.Clear();
 
             string sqlexp = $"SELECT * FROM {Table} ORDER BY ИНН";
@@ -391,13 +215,10 @@ namespace Test1.Forms
 
                 if (rez.HasRows)
                 {
-                    for (int i = 0; i < countcolums; i++)
-                        dGWMain.Columns.Add(rez.GetName(i), rez.GetName(i));
-
                     while (rez.Read())
                     {
                         Contractor contr = new Contractor();
-
+                        
                         contr.INN = rez.GetInt64(0);
                         contr.Name = rez.GetString(1);
 
@@ -409,8 +230,9 @@ namespace Test1.Forms
                             contr.FIO = rez.GetString(3);
                         else contr.FIO = "";
 
-                        dGWMain.Rows.Add(contr.ToRow());
+                      
                         Contractors.Add(contr);
+                        loadData.LoadDataToGridContractor(contr);
                     }
                 }
             }
