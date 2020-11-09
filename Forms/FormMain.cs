@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Linq;
 using System.Windows.Forms;
 using Test1.Code;
 
@@ -40,9 +39,6 @@ namespace Test1.Forms
             var size = this.Size;
             int dw = size.Width - 48;
             dGWMain.Size = new Size(dw, dGWMain.Size.Height);
-            System.Diagnostics.Debug.WriteLine(dGWMain.Size.Width + " " + dGWMain.Size.Height);
-            System.Diagnostics.Debug.WriteLine(System.Windows.Forms.SystemInformation.PrimaryMonitorMaximizedWindowSize.Width + " " + System.Windows.Forms.SystemInformation.PrimaryMonitorMaximizedWindowSize.Height);
-
 
             Schedules = new List<Test1.Code.Schedule>();
             Routs = new List<Rout>();

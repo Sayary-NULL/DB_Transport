@@ -366,7 +366,6 @@ namespace Test1.Code
             if (schedule.Saturday.JsonSTR != "")
                 dGVMain["sb", ind].Value = true;
             else dGVMain["sb", ind].Value = false;
-            System.Diagnostics.Debug.WriteLine(schedule.Saturday.JsonSTR);
 
             if (schedule.Sunday.JsonSTR != "")
                 dGVMain["vs", ind].Value = true;
