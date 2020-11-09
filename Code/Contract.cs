@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Test1.Code
 {
-    class Contract
+    public class Contract
     {
         public int ID { get; set; }
         public string Nomber_Contract { get; set; }
