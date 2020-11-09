@@ -14,15 +14,15 @@ namespace Test1.Forms
 {
     public partial class FormNewRecord : Form
     {
-        public FormNewRecord(int ID_Nomber, int ID_Hist)
+        public FormNewRecord()
         {
             InitializeComponent();
             comboBox2.Items.Add("пярмой");
             comboBox2.Items.Add("обратный");
             comboBox2.SelectedIndex = 0;
 
-            textBox1.Text = (ID_Nomber).ToString();
-            textBox2.Text = (ID_Hist).ToString();
+            textBox1.Text = "1";
+            textBox2.Text = "1";
 
             DateTime date = DateTime.Now;
 

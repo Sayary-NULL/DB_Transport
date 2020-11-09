@@ -30,12 +30,11 @@ namespace Test1.Forms
 
         private List<Contractor> Contractors;
 
-        ComboBox comboBoxID_SCH;
+        private LoadDataToMainGrid loadData;
 
         public FormMain()
         {     
             InitializeComponent();
-            InitializeComponents(); 
 
             this.Size = System.Windows.Forms.SystemInformation.PrimaryMonitorMaximizedWindowSize;
             var size = this.Size;
@@ -49,6 +48,8 @@ namespace Test1.Forms
             Routs = new List<Rout>();
             Contracts = new List<Contract>();
             Contractors = new List<Contractor>();
+
+            loadData = new LoadDataToMainGrid(dGWMain);
 
             LNameDataGrid.Text = "";
             StatusDataGrid = new Status();
@@ -72,6 +73,9 @@ namespace Test1.Forms
 
         private void button1_Click(object sender, EventArgs e)
         {
+            MessageBox.Show(this,"Данное правило не может быть обработанно в связи с запретом на выполение скрипта", "Ошибка выполнения!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            return;
+
             Font fon = dGWMain.ColumnHeadersDefaultCellStyle.Font;
             if( 8 < fon.Size + 1 && fon.Size + 1 < 14)
             {
@@ -86,6 +90,8 @@ namespace Test1.Forms
 
         private void button2_Click(object sender, EventArgs e)
         {
+            MessageBox.Show(this, "Данное правило не может быть обработанно в связи с запретом на выполение скрипта", "Ошибка выполнения!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            return;
             Font fon = dGWMain.ColumnHeadersDefaultCellStyle.Font;
             if (8 < fon.Size - 1 && fon.Size - 1 < 14)
             {
@@ -104,6 +110,48 @@ namespace Test1.Forms
             LoadGridRout();
         }
 
+        private void LoadGridRout()
+        {
+            string Table = "Маршрут";
+            LNameDataGrid.Text = Table;
+            loadData.LoadRoutColums();
+            Routs.Clear();
+
+            string sqlexp = $"SELECT * FROM {Table} ORDER BY ID, ID_Истории";
+
+            using (SqlConnection connect = new SqlConnection(StaticValues.ConnectionString))
+            {
+                connect.Open();
+                SqlCommand com = new SqlCommand(sqlexp, connect);
+                SqlCommand countColums = new SqlCommand($"SELECT Count(COLUMN_NAME) FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '{Table}'", connect);
+
+                var countcolums = (int)countColums.ExecuteScalar();
+                var rez = com.ExecuteReader();
+
+                if (rez.HasRows)
+                {
+                    while (rez.Read())
+                    {
+                        Rout rout = new Rout
+                        {
+                            ID = rez.GetInt32(0),
+                            ID_History = rez.GetInt32(1),
+                            ID_Contract = rez.GetInt32(2),
+                            Registr = rez.GetString(3),
+                            Poryd = rez.GetString(4),
+                            TypeOfRegular = rez.GetString(5),
+                            TypeOnOut = rez.GetString(6),
+                            Name = rez.GetString(7),
+                            Type_communication = rez.GetString(8)
+                        };
+
+                        loadData.LoadDataToGridRout(rout);
+                        Routs.Add(rout);
+                    }
+                }
+            }
+        }
+
         private void LoadGridSchedules()
         {
             string Table = "Вариант_рейса";
@@ -111,10 +159,7 @@ namespace Test1.Forms
             loadData.LoadScheduleColums();
             Schedules.Clear();
 
-            string sqlexp;
-            if (comboBoxID_SCH.SelectedIndex > 0)
-                sqlexp = $"SELECT * FROM {Table} WHERE ID_Маршрут = {comboBoxID_SCH.SelectedItem} ORDER BY ID_Маршрут, ID_Номер_Расписания,ID_История";
-            else sqlexp = $"SELECT * FROM {Table} ORDER BY ID_Маршрут, ID_Номер_Расписания, ID_История";
+            string sqlexp = $"SELECT * FROM {Table} ORDER BY ID_Маршрут, ID_Номер_Расписания, ID_История";
 
             using (SqlConnection connect = new SqlConnection(StaticValues.ConnectionString))
             {
@@ -264,20 +309,8 @@ namespace Test1.Forms
 
         private void вариантРейсаToolStripMenuItem1_Click_1(object sender, EventArgs e)
         {
-            if (comboBoxID_SCH.SelectedIndex != 0)
-            {
-                int ID_NUM = 0;
-                int ID_HIS = 1;
-                if (Schedules.Count() != 0)
-                {
-                    ID_NUM = Schedules.Last().ID_Number_Schedule;
-                    ID_HIS = Schedules.Last().ID_History;
-                }
-
-                FormNewRecord formComp = new FormNewRecord(ID_NUM + 1, ID_HIS);
-                formComp.ShowDialog();
-            }
-            else MessageBox.Show("Выбирете конкретный маршрут!");
+            FormNewRecord formComp = new FormNewRecord();
+            formComp.ShowDialog();
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -309,10 +342,10 @@ namespace Test1.Forms
         private void button4_Click(object sender, EventArgs e)
         {
             MessageBox.Show(this, System.Windows.Forms.SystemInformation.PrimaryMonitorMaximizedWindowSize.Width + " " + System.Windows.Forms.SystemInformation.PrimaryMonitorMaximizedWindowSize.Height, "Ифно", MessageBoxButtons.OK);
-            /*for(int i = 0; i < dGWMain.Columns.Count; i++)
+            for(int i = 0; i < dGWMain.Columns.Count; i++)
             {
                 MessageBox.Show(dGWMain.Columns[i].Width.ToString());
-            }*/
+            }
         }
 
         private void dGWMain_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)

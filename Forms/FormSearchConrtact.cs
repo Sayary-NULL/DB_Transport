@@ -103,7 +103,7 @@ namespace Test1.Forms
                 }
                 else isCom2 = true;
 
-                if(isCom1 && isCom2)
+                if(isCom1 || isCom2)
                     dataGridView1.Rows.Add(item.ID, item.Nomber_Contract, item.With.ToString("dd.MM.yyyyy"), item.By.ToString("dd.MM.yyyyy"), item.INN);
             }
         }

@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{F769AD8E-5B9A-4BF8-92D0-7E29F40D5FEA}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <RootNamespace>Test1</RootNamespace>
     <AssemblyName>Test1</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
@@ -35,11 +35,19 @@
   <PropertyGroup>
     <ApplicationIcon>1490886335-17-scholl-bus_82464.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <None Include="Settings1.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings1.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Code\LoadDataToMainGrid.cs" />
     <Compile Include="Forms\FormAddRout.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -112,6 +120,11 @@
     </Compile>
     <Compile Include="Forms\FormPrilo3.Designer.cs">
       <DependentUpon>FormPrilo3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Settings1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings1.settings</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
