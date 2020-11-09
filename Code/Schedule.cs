@@ -45,7 +45,10 @@ namespace Test1.Code
             }
             catch
             {
-                Monday = new DayOfWeek();
+                Monday = new DayOfWeek
+                {
+                    JsonSTR = ""
+                };
                 return false;
             }
         }
@@ -66,7 +69,10 @@ namespace Test1.Code
             }
             catch
             {
-                Tuesday = new DayOfWeek();
+                Tuesday = new DayOfWeek
+                {
+                    JsonSTR = ""
+                };
                 return false;
             }
         }
@@ -88,7 +94,10 @@ namespace Test1.Code
             }
             catch
             {
-                Wednesday = new DayOfWeek();
+                Wednesday = new DayOfWeek
+                {
+                    JsonSTR = ""
+                };
                 return false;
             }
         }
@@ -109,7 +118,10 @@ namespace Test1.Code
             }
             catch
             {
-                Thursday = new DayOfWeek();
+                Thursday = new DayOfWeek
+                {
+                    JsonSTR = ""
+                };
                 return false;
             }
         }
@@ -130,7 +142,10 @@ namespace Test1.Code
             }
             catch
             {
-                Friday = new DayOfWeek();
+                Friday = new DayOfWeek
+                {
+                    JsonSTR = ""
+                };
                 return false;
             }
         }
@@ -151,7 +166,10 @@ namespace Test1.Code
             }
             catch
             {
-                Saturday = new DayOfWeek();
+                Saturday = new DayOfWeek
+                {
+                    JsonSTR = ""
+                };
                 return false;
             }
         }
@@ -172,7 +190,10 @@ namespace Test1.Code
             }
             catch
             {
-                Sunday = new DayOfWeek();
+                Sunday = new DayOfWeek
+                {
+                    JsonSTR = ""
+                };
                 return false;
             }
         }
@@ -193,7 +214,10 @@ namespace Test1.Code
             }
             catch
             {
-                Holiday = new DayOfWeek();
+                Holiday = new DayOfWeek
+                {
+                    JsonSTR = ""
+                };
                 return false;
             }
         }
