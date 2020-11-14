@@ -355,5 +355,11 @@ namespace Test1.Forms
             var contract = new FormAddContract();
             contract.Show();
         }
+
+        private void подрядчикToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var addcontractor = new FormAddContractor();
+            addcontractor.ShowDialog();
+        }
     }
 }
