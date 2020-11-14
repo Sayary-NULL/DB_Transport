@@ -349,5 +349,11 @@ namespace Test1.Forms
             if(e.RowIndex != -1)
             MessageBox.Show(this, "Будет! Все будет! \r\n" +(e.RowIndex + 1) + " " + dGWMain.Rows[e.RowIndex].Cells[0].Value, "Инфо", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
+        private void договорToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            var contract = new FormAddContract();
+            contract.Show();
+        }
     }
 }
