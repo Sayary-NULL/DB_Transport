@@ -48,6 +48,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Code\LoadDataToMainGrid.cs" />
+    <Compile Include="Forms\FormAddContract.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormAddContract.Designer.cs">
+      <DependentUpon>FormAddContract.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormAddContractor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormAddContractor.Designer.cs">
+      <DependentUpon>FormAddContractor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormAddRout.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -149,6 +161,12 @@
     <EmbeddedResource Include="DB_Resource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>DB_Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormAddContract.resx">
+      <DependentUpon>FormAddContract.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormAddContractor.resx">
+      <DependentUpon>FormAddContractor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormAddRout.resx">
       <DependentUpon>FormAddRout.cs</DependentUpon>
