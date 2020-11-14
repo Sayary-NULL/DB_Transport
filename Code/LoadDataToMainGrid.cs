@@ -261,6 +261,14 @@ namespace Test1.Code
             };
             date_start.HeaderCell.Style.WrapMode = DataGridViewTriState.True;
 
+            DataGridViewColumn date_end = new DataGridViewTextBoxColumn
+            {
+                Name = "date_end",
+                HeaderText = "Дата окончания",
+                Width = 65
+            };
+            date_end.HeaderCell.Style.WrapMode = DataGridViewTriState.True;
+
             DataGridViewColumn money = new DataGridViewTextBoxColumn
             {
                 Name = "money",
@@ -284,6 +292,7 @@ namespace Test1.Code
             dGVMain.Columns.Add(idContract);
             dGVMain.Columns.Add(number);
             dGVMain.Columns.Add(date_start);
+            dGVMain.Columns.Add(date_end);
             dGVMain.Columns.Add(money);
             dGVMain.Columns.Add(INN);
         }
@@ -388,6 +397,7 @@ namespace Test1.Code
             int ind = dGVMain.Rows.Add(contract.ID.ToString());
             dGVMain["number", ind].Value = contract.Nomber_Contract;
             dGVMain["date_start", ind].Value = contract.With.ToString("dd.MM.yyyy");
+            dGVMain["date_end", ind].Value = contract.By.ToString("dd.MM.yyyy");
             dGVMain["money", ind].Value = contract.money.ToString();
             dGVMain["inn", ind].Value = contract.INN.ToString();
         }
