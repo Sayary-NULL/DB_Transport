@@ -361,5 +361,13 @@ namespace Test1.Forms
             var addcontractor = new FormAddContractor();
             addcontractor.ShowDialog();
         }
+
+        private void dGWMain_SelectionChanged(object sender, EventArgs e)
+        {
+            if(dGWMain.SelectedRows.Count >= 2)
+            {
+                dGWMain.SelectedRows[1].Selected = false;
+            }
+        }
     }
 }
