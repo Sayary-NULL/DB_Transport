@@ -14,9 +14,83 @@ namespace Test1.Forms
 {
     public partial class FormAddRout : Form
     {
+        struct Id_of_Name
+        {
+            public int ID;
+            public string Name;
+            public string Display_Name => $"{ID} {Name}";
+            public string Display_ID => ID.ToString("00");
+        }
+
         public FormAddRout()
         {
             InitializeComponent();
+
+            comboBox1.SelectedIndex = 0;
+
+            comboBox2.DataSource = GetNameRegion();
+            comboBox2.DisplayMember = "Display_Name";
+            comboBox2.ValueMember = "Display_ID";
+
+            comboBox3.DataSource = GetNameCity();
+            comboBox3.DisplayMember = "Display_Name";
+            comboBox3.ValueMember = "Display_ID";
+        }
+
+        private List<Id_of_Name> GetNameRegion()
+        {
+            List<Id_of_Name> id_Of_Regions = new List<Id_of_Name>();
+
+            using(SqlConnection connection = new SqlConnection(StaticValues.ConnectionString))
+            {
+                SqlCommand com = new SqlCommand("SELECT * FROM Id_of_Name_Area ORDER BY ID", connection);
+                connection.Open();
+
+                var rez = com.ExecuteReader();
+
+                if(rez.HasRows)
+                {
+                    while(rez.Read())
+                    {
+                        id_Of_Regions.Add(new Id_of_Name
+                        {
+                            ID = rez.GetInt32(0),
+                            Name = rez.GetString(1)
+                        });
+                    }
+                }
+            }
+
+            return id_Of_Regions;
+        }
+
+        private List<Id_of_Name> GetNameCity()
+        {
+            List<Id_of_Name> id_Of_Regions = new List<Id_of_Name>();
+
+            var selectItem = (Id_of_Name)comboBox2.SelectedItem;
+
+            using (SqlConnection connection = new SqlConnection(StaticValues.ConnectionString))
+            {
+                SqlCommand com = new SqlCommand($"SELECT * FROM Id_Name_City WHERE ID_Area = {selectItem.ID} ORDER BY ID", connection);
+                connection.Open();
+
+                var rez = com.ExecuteReader();
+
+                if (rez.HasRows)
+                {
+                    while (rez.Read())
+                    {
+                        id_Of_Regions.Add(new Id_of_Name
+                        {
+                            ID = rez.GetInt32(1),
+                            Name = rez.GetString(2)
+                        });
+                    }
+                }
+            }
+
+            return id_Of_Regions;
         }
 
         private void textBox3_TextChanged(object sender, EventArgs e)
@@ -130,16 +204,73 @@ namespace Test1.Forms
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
-            if(!String.IsNullOrWhiteSpace(textBox2.Text))
+            textBox2.Text = textBox2.Text.Trim();
+            textBox2.SelectionStart = textBox2.Text.Length;
+
+            if (String.IsNullOrWhiteSpace(textBox2.Text))
+                return;
+
+            if (!int.TryParse(textBox2.Text, out int number))
             {
-                if (textBox2.Text.Length <= 3)
-                    textBox8.Text = "7601" + int.Parse(textBox2.Text).ToString("000");
-                else
-                {
-                    textBox2.Text = textBox2.Text.Remove(3);
-                    textBox2.SelectionStart = 3;
-                }
+                MessageBox.Show(this, "Значение должно содержать только цифры!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textBox2.Text = textBox2.Text.Remove(textBox2.Text.Length - 1);
+                textBox2.SelectionStart = textBox2.Text.Length;
+                return;
+            }
+
+            if (textBox2.Text.Length <= 3)
+            {
+                var rez = (Id_of_Name)comboBox2.SelectedItem;
+                var rez1 = (Id_of_Name)comboBox3.SelectedItem;
+                textBox8.Text = (rez.Display_ID) + rez1.Display_ID + number.ToString("000");
+            }
+            else
+            {
+                textBox2.Text = textBox2.Text.Remove(3);
+                textBox2.SelectionStart = 3;
             }
         }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            if(textBox1.Text.Length > 10)
+            {
+                textBox1.Text = textBox1.Text.Remove(textBox1.Text.Length - 1);
+            }
+            toolTip1.SetToolTip(label14, $"({textBox1.Text.Length} / 10 символов)");
+        }
+
+        private void textBox6_DoubleClick(object sender, EventArgs e)
+        {
+            button1_Click(sender, e);
+        }
+        private void textBox7_DoubleClick(object sender, EventArgs e)
+        {
+            button1_Click(sender, e);
+        }
+
+        private void textBox8_Enter(object sender, EventArgs e)
+        {
+            textBox2.Focus();
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            comboBox3.DataSource = GetNameCity();
+
+            if(!String.IsNullOrWhiteSpace(textBox2.Text))
+            {
+                textBox2_TextChanged(sender, e);
+            }
+        }
+
+        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!String.IsNullOrWhiteSpace(textBox2.Text))
+            {
+                textBox2_TextChanged(sender, e);
+            }
+        }
+
     }
 }
