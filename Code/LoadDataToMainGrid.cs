@@ -371,7 +371,8 @@ namespace Test1.Code
             string str = "";
             foreach (var day in schedule.DayOfWork)
                 str += day + ",";
-            str = str.Remove(str.Length - 1);
+            if(str != "")
+                str = str.Remove(str.Length - 1);
 
             dGVMain["dayofworck", ind].Value = str;
         }
