@@ -13,8 +13,8 @@ namespace Test1
 {
     class Program
     {
-        static List<Test1.Code.Schedule> Schedules = new List<Test1.Code.Schedule>();
 
+        [STAThread]
         public static void Main()
         {
 #if !DEBUG

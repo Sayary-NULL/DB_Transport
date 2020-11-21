@@ -49,6 +49,12 @@ namespace Test1.Forms
 
             LNameDataGrid.Text = "";
             StatusDataGrid = new Status();
+
+            button4.Location = new Point(dGWMain.Size.Width - button4.Size.Width, button4.Location.Y);
+            button3.Location = new Point(button4.Location.X - button3.Size.Width - 5, button3.Location.Y);
+            button2.Location = new Point(button3.Location.X - button2.Size.Width - 5, button2.Location.Y);
+            button1.Location = new Point(button2.Location.X - button1.Size.Width - 5, button1.Location.Y);
+
             LoadGridRout();
         }
 
@@ -59,12 +65,6 @@ namespace Test1.Forms
                 this.MaximumSize = this.MinimumSize = this.Size;
                 sized = true;
             }
-        }
-
-        private void расчитатьToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Test1.Forms.FormPrilo3 formPrilo3 = new Test1.Forms.FormPrilo3();
-            formPrilo3.Show();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -302,7 +302,45 @@ namespace Test1.Forms
 
         private void вариантРейсаToolStripMenuItem1_Click_1(object sender, EventArgs e)
         {
-            FormNewRecord formComp = new FormNewRecord();
+            FormAddSchedule formComp = new FormAddSchedule();
+
+            if(StatusDataGrid == Status.Rout)
+            {
+                formComp.SetIdRout(dGWMain.SelectedRows[0].Cells[0].Value.ToString());
+                formComp.SetNameRout(dGWMain.SelectedRows[0].Cells[1].Value.ToString());
+
+                using(SqlConnection connection = new SqlConnection(StaticValues.ConnectionString))
+                {
+                    SqlCommand com = new SqlCommand($"SELECT max(ID_История), max(ID_Номер_Расписания) From Вариант_рейса WHERE ID_Маршрут = {dGWMain.SelectedRows[0].Cells[0].Value}", connection);
+                    connection.Open();
+                    var rez = com.ExecuteReader();
+                    if(rez.HasRows)
+                    {
+                        rez.Read();
+                        formComp.SetNumberHistory(rez.GetInt32(0).ToString());
+                        formComp.SetNumberHistory((rez.GetInt32(1)+1).ToString());
+                    }
+                }
+            }
+            else if(StatusDataGrid == Status.Schedule)
+            {
+                formComp.SetIdRout(dGWMain.SelectedRows[0].Cells[0].Value.ToString());
+
+                using (SqlConnection connection = new SqlConnection(StaticValues.ConnectionString))
+                {
+                    SqlCommand com = new SqlCommand($"SELECT max(ID_История), max(ID_Номер_Расписания), Наименование From Вариант_рейса v Join Маршрут m ON v.ID_Маршрут = m.ID WHERE ID_Маршрут = {dGWMain.SelectedRows[0].Cells[0].Value} GROUP BY Наименование", connection);
+                    connection.Open();
+                    var rez = com.ExecuteReader();
+                    if (rez.HasRows)
+                    {
+                        rez.Read();
+                        formComp.SetNumberHistory(rez.GetInt32(0).ToString());
+                        formComp.SetNumberHistory((rez.GetInt32(1) + 1).ToString());
+                        formComp.SetNameRout(rez.GetString(2));
+                    }
+                }
+            }
+
             formComp.ShowDialog();
         }
 
@@ -323,13 +361,6 @@ namespace Test1.Forms
                     LoadGridContractor();
                     break;
             }
-        }
-
-        private void FormMain_MaximumSizeChanged(object sender, EventArgs e)
-        {
-            //System.Diagnostics.Debug.WriteLine(this.Size.Width + " " + this.Size.Height);
-            //WinForms.SystemInformation.PrimaryMonitorSize.Width
-            //System.Diagnostics.Debug.WriteLine(System.Windows.Forms.SystemInformation.PrimaryMonitorMaximizedWindowSize.Width + " " + System.Windows.Forms.SystemInformation.PrimaryMonitorMaximizedWindowSize.Height);
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -365,6 +396,35 @@ namespace Test1.Forms
             {
                 dGWMain.SelectedRows[1].Selected = false;
             }
+        }
+
+        private void запросКБДToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var rez = "SELECT TABLE_NAME AS [Название таблицы] FROM INFORMATION_SCHEMA.TABLES";
+        }
+
+        private void маршрутыИДоговорыToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = new FormLoadDataFromExcel();
+            form.ShowDialog();
+        }
+
+        private void вариантыРейсовToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = new FormLoadDataFromExcelSchelude();
+            form.ShowDialog();
+        }
+
+        private void маршрутыToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Test1.Forms.FormPrilo3 formPrilo3 = new Test1.Forms.FormPrilo3();
+            formPrilo3.Show();
+        }
+
+        private void договорыToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = new FromPrilojenie3.FormPrilo3Contract();
+            form.ShowDialog();
         }
     }
 }
