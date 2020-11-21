@@ -1,6 +1,6 @@
 ﻿namespace Test1.Forms
 {
-    partial class FormCalcDateForClass
+    partial class FormCalcDateForClassRout
     {
         /// <summary>
         /// Required designer variable.
@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -65,17 +65,18 @@
             this.textBox10 = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.checkBox4 = new System.Windows.Forms.CheckBox();
-            this.checkBox5 = new System.Windows.Forms.CheckBox();
-            this.checkBox6 = new System.Windows.Forms.CheckBox();
-            this.checkBox7 = new System.Windows.Forms.CheckBox();
             this.checkBox8 = new System.Windows.Forms.CheckBox();
+            this.checkBox7 = new System.Windows.Forms.CheckBox();
+            this.checkBox6 = new System.Windows.Forms.CheckBox();
+            this.checkBox5 = new System.Windows.Forms.CheckBox();
+            this.checkBox4 = new System.Windows.Forms.CheckBox();
+            this.checkBox3 = new System.Windows.Forms.CheckBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.button2 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -95,28 +96,36 @@
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(113, 80);
-            this.groupBox1.TabIndex = 15;
+            this.groupBox1.TabIndex = 16;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "МК";
             // 
-            // button1
+            // label4
             // 
-            this.button1.Location = new System.Drawing.Point(425, 146);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 20;
-            this.button1.Text = "Добавить";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(79, 50);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(20, 13);
+            this.label4.TabIndex = 21;
+            this.label4.Text = "шт";
             // 
-            // label1
+            // label3
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 26);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(32, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Аэ = ";
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(79, 26);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(20, 13);
+            this.label3.TabIndex = 23;
+            this.label3.Text = "шт";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(40, 47);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(33, 20);
+            this.textBox2.TabIndex = 2;
+            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            this.textBox2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Dont_enter_char);
             // 
             // label2
             // 
@@ -132,34 +141,28 @@
             this.textBox1.Location = new System.Drawing.Point(40, 23);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(33, 20);
-            this.textBox1.TabIndex = 21;
+            this.textBox1.TabIndex = 1;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Dont_enter_char);
             // 
-            // textBox2
+            // label1
             // 
-            this.textBox2.Location = new System.Drawing.Point(40, 47);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(33, 20);
-            this.textBox2.TabIndex = 22;
-            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 26);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(32, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Аэ = ";
             // 
-            // label3
+            // button1
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(79, 26);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(20, 13);
-            this.label3.TabIndex = 23;
-            this.label3.Text = "шт";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(79, 50);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(21, 13);
-            this.label4.TabIndex = 21;
-            this.label4.Text = "км";
+            this.button1.Location = new System.Drawing.Point(425, 128);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 14;
+            this.button1.Text = "Добавить";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // groupBox2
             // 
@@ -172,7 +175,7 @@
             this.groupBox2.Location = new System.Drawing.Point(131, 12);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(113, 80);
-            this.groupBox2.TabIndex = 21;
+            this.groupBox2.TabIndex = 17;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "CК";
             // 
@@ -181,9 +184,9 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(79, 50);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(21, 13);
+            this.label5.Size = new System.Drawing.Size(20, 13);
             this.label5.TabIndex = 21;
-            this.label5.Text = "км";
+            this.label5.Text = "шт";
             // 
             // label6
             // 
@@ -199,8 +202,9 @@
             this.textBox3.Location = new System.Drawing.Point(40, 47);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(33, 20);
-            this.textBox3.TabIndex = 22;
+            this.textBox3.TabIndex = 4;
             this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
+            this.textBox3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Dont_enter_char);
             // 
             // label7
             // 
@@ -216,8 +220,9 @@
             this.textBox4.Location = new System.Drawing.Point(40, 23);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(33, 20);
-            this.textBox4.TabIndex = 21;
+            this.textBox4.TabIndex = 3;
             this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
+            this.textBox4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Dont_enter_char);
             // 
             // label8
             // 
@@ -239,7 +244,7 @@
             this.groupBox3.Location = new System.Drawing.Point(250, 12);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(113, 80);
-            this.groupBox3.TabIndex = 22;
+            this.groupBox3.TabIndex = 18;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "БК";
             // 
@@ -248,9 +253,9 @@
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(79, 50);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(21, 13);
+            this.label9.Size = new System.Drawing.Size(20, 13);
             this.label9.TabIndex = 21;
-            this.label9.Text = "км";
+            this.label9.Text = "шт";
             // 
             // label10
             // 
@@ -266,8 +271,9 @@
             this.textBox5.Location = new System.Drawing.Point(40, 47);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(33, 20);
-            this.textBox5.TabIndex = 22;
+            this.textBox5.TabIndex = 6;
             this.textBox5.TextChanged += new System.EventHandler(this.textBox5_TextChanged);
+            this.textBox5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Dont_enter_char);
             // 
             // label11
             // 
@@ -283,8 +289,9 @@
             this.textBox6.Location = new System.Drawing.Point(40, 23);
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(33, 20);
-            this.textBox6.TabIndex = 21;
+            this.textBox6.TabIndex = 5;
             this.textBox6.TextChanged += new System.EventHandler(this.textBox6_TextChanged);
+            this.textBox6.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Dont_enter_char);
             // 
             // label12
             // 
@@ -306,7 +313,7 @@
             this.groupBox4.Location = new System.Drawing.Point(369, 12);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(113, 80);
-            this.groupBox4.TabIndex = 23;
+            this.groupBox4.TabIndex = 19;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "ОМК";
             // 
@@ -315,9 +322,9 @@
             this.label13.AutoSize = true;
             this.label13.Location = new System.Drawing.Point(79, 50);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(21, 13);
+            this.label13.Size = new System.Drawing.Size(20, 13);
             this.label13.TabIndex = 21;
-            this.label13.Text = "км";
+            this.label13.Text = "шт";
             // 
             // label14
             // 
@@ -333,8 +340,9 @@
             this.textBox7.Location = new System.Drawing.Point(40, 47);
             this.textBox7.Name = "textBox7";
             this.textBox7.Size = new System.Drawing.Size(33, 20);
-            this.textBox7.TabIndex = 22;
+            this.textBox7.TabIndex = 8;
             this.textBox7.TextChanged += new System.EventHandler(this.textBox7_TextChanged);
+            this.textBox7.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Dont_enter_char);
             // 
             // label15
             // 
@@ -350,8 +358,9 @@
             this.textBox8.Location = new System.Drawing.Point(40, 23);
             this.textBox8.Name = "textBox8";
             this.textBox8.Size = new System.Drawing.Size(33, 20);
-            this.textBox8.TabIndex = 21;
+            this.textBox8.TabIndex = 7;
             this.textBox8.TextChanged += new System.EventHandler(this.textBox8_TextChanged);
+            this.textBox8.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Dont_enter_char);
             // 
             // label16
             // 
@@ -373,7 +382,7 @@
             this.groupBox5.Location = new System.Drawing.Point(489, 12);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(113, 80);
-            this.groupBox5.TabIndex = 24;
+            this.groupBox5.TabIndex = 20;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "ОБК";
             // 
@@ -382,9 +391,9 @@
             this.label17.AutoSize = true;
             this.label17.Location = new System.Drawing.Point(79, 50);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(21, 13);
+            this.label17.Size = new System.Drawing.Size(20, 13);
             this.label17.TabIndex = 21;
-            this.label17.Text = "км";
+            this.label17.Text = "шт";
             // 
             // label18
             // 
@@ -400,8 +409,9 @@
             this.textBox9.Location = new System.Drawing.Point(40, 47);
             this.textBox9.Name = "textBox9";
             this.textBox9.Size = new System.Drawing.Size(33, 20);
-            this.textBox9.TabIndex = 22;
+            this.textBox9.TabIndex = 10;
             this.textBox9.TextChanged += new System.EventHandler(this.textBox9_TextChanged);
+            this.textBox9.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Dont_enter_char);
             // 
             // label19
             // 
@@ -417,8 +427,9 @@
             this.textBox10.Location = new System.Drawing.Point(40, 23);
             this.textBox10.Name = "textBox10";
             this.textBox10.Size = new System.Drawing.Size(33, 20);
-            this.textBox10.TabIndex = 21;
+            this.textBox10.TabIndex = 9;
             this.textBox10.TextChanged += new System.EventHandler(this.textBox10_TextChanged);
+            this.textBox10.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Dont_enter_char);
             // 
             // label20
             // 
@@ -446,77 +457,15 @@
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Дни недели";
             // 
-            // checkBox1
+            // checkBox8
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Checked = true;
-            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox1.Location = new System.Drawing.Point(6, 28);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(40, 17);
-            this.checkBox1.TabIndex = 0;
-            this.checkBox1.Text = "Пн";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            // 
-            // checkBox2
-            // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Checked = true;
-            this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox2.Location = new System.Drawing.Point(52, 28);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(38, 17);
-            this.checkBox2.TabIndex = 1;
-            this.checkBox2.Text = "Вт";
-            this.checkBox2.UseVisualStyleBackColor = true;
-            // 
-            // checkBox3
-            // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Checked = true;
-            this.checkBox3.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox3.Location = new System.Drawing.Point(98, 28);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(39, 17);
-            this.checkBox3.TabIndex = 2;
-            this.checkBox3.Text = "Ср";
-            this.checkBox3.UseVisualStyleBackColor = true;
-            // 
-            // checkBox4
-            // 
-            this.checkBox4.AutoSize = true;
-            this.checkBox4.Checked = true;
-            this.checkBox4.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox4.Location = new System.Drawing.Point(140, 28);
-            this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(39, 17);
-            this.checkBox4.TabIndex = 3;
-            this.checkBox4.Text = "Чт";
-            this.checkBox4.UseVisualStyleBackColor = true;
-            // 
-            // checkBox5
-            // 
-            this.checkBox5.AutoSize = true;
-            this.checkBox5.Checked = true;
-            this.checkBox5.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox5.Location = new System.Drawing.Point(186, 28);
-            this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(39, 17);
-            this.checkBox5.TabIndex = 4;
-            this.checkBox5.Text = "Пт";
-            this.checkBox5.UseVisualStyleBackColor = true;
-            // 
-            // checkBox6
-            // 
-            this.checkBox6.AutoSize = true;
-            this.checkBox6.Checked = true;
-            this.checkBox6.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox6.Location = new System.Drawing.Point(232, 28);
-            this.checkBox6.Name = "checkBox6";
-            this.checkBox6.Size = new System.Drawing.Size(39, 17);
-            this.checkBox6.TabIndex = 5;
-            this.checkBox6.Text = "Сб";
-            this.checkBox6.UseVisualStyleBackColor = true;
+            this.checkBox8.AutoSize = true;
+            this.checkBox8.Location = new System.Drawing.Point(324, 28);
+            this.checkBox8.Name = "checkBox8";
+            this.checkBox8.Size = new System.Drawing.Size(40, 17);
+            this.checkBox8.TabIndex = 28;
+            this.checkBox8.Text = "Пр";
+            this.checkBox8.UseVisualStyleBackColor = true;
             // 
             // checkBox7
             // 
@@ -526,19 +475,81 @@
             this.checkBox7.Location = new System.Drawing.Point(278, 28);
             this.checkBox7.Name = "checkBox7";
             this.checkBox7.Size = new System.Drawing.Size(38, 17);
-            this.checkBox7.TabIndex = 6;
+            this.checkBox7.TabIndex = 27;
             this.checkBox7.Text = "Вт";
             this.checkBox7.UseVisualStyleBackColor = true;
             // 
-            // checkBox8
+            // checkBox6
             // 
-            this.checkBox8.AutoSize = true;
-            this.checkBox8.Location = new System.Drawing.Point(324, 28);
-            this.checkBox8.Name = "checkBox8";
-            this.checkBox8.Size = new System.Drawing.Size(40, 17);
-            this.checkBox8.TabIndex = 7;
-            this.checkBox8.Text = "Пр";
-            this.checkBox8.UseVisualStyleBackColor = true;
+            this.checkBox6.AutoSize = true;
+            this.checkBox6.Checked = true;
+            this.checkBox6.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox6.Location = new System.Drawing.Point(232, 28);
+            this.checkBox6.Name = "checkBox6";
+            this.checkBox6.Size = new System.Drawing.Size(39, 17);
+            this.checkBox6.TabIndex = 6;
+            this.checkBox6.Text = "Сб";
+            this.checkBox6.UseVisualStyleBackColor = true;
+            // 
+            // checkBox5
+            // 
+            this.checkBox5.AutoSize = true;
+            this.checkBox5.Checked = true;
+            this.checkBox5.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox5.Location = new System.Drawing.Point(186, 28);
+            this.checkBox5.Name = "checkBox5";
+            this.checkBox5.Size = new System.Drawing.Size(39, 17);
+            this.checkBox5.TabIndex = 25;
+            this.checkBox5.Text = "Пт";
+            this.checkBox5.UseVisualStyleBackColor = true;
+            // 
+            // checkBox4
+            // 
+            this.checkBox4.AutoSize = true;
+            this.checkBox4.Checked = true;
+            this.checkBox4.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox4.Location = new System.Drawing.Point(140, 28);
+            this.checkBox4.Name = "checkBox4";
+            this.checkBox4.Size = new System.Drawing.Size(39, 17);
+            this.checkBox4.TabIndex = 24;
+            this.checkBox4.Text = "Чт";
+            this.checkBox4.UseVisualStyleBackColor = true;
+            // 
+            // checkBox3
+            // 
+            this.checkBox3.AutoSize = true;
+            this.checkBox3.Checked = true;
+            this.checkBox3.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox3.Location = new System.Drawing.Point(98, 28);
+            this.checkBox3.Name = "checkBox3";
+            this.checkBox3.Size = new System.Drawing.Size(39, 17);
+            this.checkBox3.TabIndex = 23;
+            this.checkBox3.Text = "Ср";
+            this.checkBox3.UseVisualStyleBackColor = true;
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Checked = true;
+            this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox2.Location = new System.Drawing.Point(52, 28);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(38, 17);
+            this.checkBox2.TabIndex = 22;
+            this.checkBox2.Text = "Вт";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Checked = true;
+            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox1.Location = new System.Drawing.Point(6, 28);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(40, 17);
+            this.checkBox1.TabIndex = 21;
+            this.checkBox1.Text = "Пн";
+            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // radioButton1
             // 
@@ -546,10 +557,10 @@
             this.radioButton1.Checked = true;
             this.radioButton1.Location = new System.Drawing.Point(12, 101);
             this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(93, 17);
-            this.radioButton1.TabIndex = 30;
+            this.radioButton1.Size = new System.Drawing.Size(68, 17);
+            this.radioButton1.TabIndex = 11;
             this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Каждый день";
+            this.radioButton1.Text = "По дням";
             this.radioButton1.UseVisualStyleBackColor = true;
             this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 
@@ -559,7 +570,7 @@
             this.radioButton2.Location = new System.Drawing.Point(111, 101);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(88, 17);
-            this.radioButton2.TabIndex = 31;
+            this.radioButton2.TabIndex = 12;
             this.radioButton2.Text = "Рабочие дни";
             this.radioButton2.UseVisualStyleBackColor = true;
             this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
@@ -570,16 +581,27 @@
             this.radioButton3.Location = new System.Drawing.Point(205, 101);
             this.radioButton3.Name = "radioButton3";
             this.radioButton3.Size = new System.Drawing.Size(98, 17);
-            this.radioButton3.TabIndex = 32;
+            this.radioButton3.TabIndex = 13;
             this.radioButton3.Text = "Выходные дни";
             this.radioButton3.UseVisualStyleBackColor = true;
             this.radioButton3.CheckedChanged += new System.EventHandler(this.radioButton3_CheckedChanged);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(425, 157);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 15;
+            this.button2.Text = "Отмена";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // FormCalcDateForClass
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(611, 193);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.radioButton3);
             this.Controls.Add(this.radioButton2);
             this.Controls.Add(this.radioButton1);
@@ -659,5 +681,6 @@
         public System.Windows.Forms.CheckBox checkBox3;
         public System.Windows.Forms.CheckBox checkBox2;
         public System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Button button2;
     }
 }

@@ -29,12 +29,6 @@
         private void InitializeComponent()
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Mount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SC = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MC = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LC = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ESC = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ELC = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dTPWith = new System.Windows.Forms.DateTimePicker();
             this.dTPBy = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
@@ -47,6 +41,12 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.Mount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ESC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ELC = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -65,42 +65,6 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(643, 330);
             this.dataGridView1.TabIndex = 0;
-            // 
-            // Mount
-            // 
-            this.Mount.HeaderText = "Месяц";
-            this.Mount.Name = "Mount";
-            this.Mount.ReadOnly = true;
-            // 
-            // SC
-            // 
-            this.SC.HeaderText = "МК";
-            this.SC.Name = "SC";
-            this.SC.ReadOnly = true;
-            // 
-            // MC
-            // 
-            this.MC.HeaderText = "СК";
-            this.MC.Name = "MC";
-            this.MC.ReadOnly = true;
-            // 
-            // LC
-            // 
-            this.LC.HeaderText = "БК";
-            this.LC.Name = "LC";
-            this.LC.ReadOnly = true;
-            // 
-            // ESC
-            // 
-            this.ESC.HeaderText = "ОМК";
-            this.ESC.Name = "ESC";
-            this.ESC.ReadOnly = true;
-            // 
-            // ELC
-            // 
-            this.ELC.HeaderText = "ОБК";
-            this.ELC.Name = "ELC";
-            this.ELC.ReadOnly = true;
             // 
             // dTPWith
             // 
@@ -211,6 +175,48 @@
             this.label5.TabIndex = 12;
             this.label5.Text = "Название";
             // 
+            // Mount
+            // 
+            this.Mount.HeaderText = "Месяц";
+            this.Mount.Name = "Mount";
+            this.Mount.ReadOnly = true;
+            this.Mount.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // SC
+            // 
+            this.SC.HeaderText = "МК";
+            this.SC.Name = "SC";
+            this.SC.ReadOnly = true;
+            this.SC.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // MC
+            // 
+            this.MC.HeaderText = "СК";
+            this.MC.Name = "MC";
+            this.MC.ReadOnly = true;
+            this.MC.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // LC
+            // 
+            this.LC.HeaderText = "БК";
+            this.LC.Name = "LC";
+            this.LC.ReadOnly = true;
+            this.LC.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // ESC
+            // 
+            this.ESC.HeaderText = "ОМК";
+            this.ESC.Name = "ESC";
+            this.ESC.ReadOnly = true;
+            this.ESC.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // ELC
+            // 
+            this.ELC.HeaderText = "ОБК";
+            this.ELC.Name = "ELC";
+            this.ELC.ReadOnly = true;
+            this.ELC.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
             // FormPrilo3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -243,12 +249,6 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Mount;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SC;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MC;
-        private System.Windows.Forms.DataGridViewTextBoxColumn LC;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ESC;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ELC;
         private System.Windows.Forms.DateTimePicker dTPWith;
         private System.Windows.Forms.DateTimePicker dTPBy;
         private System.Windows.Forms.Label label1;
@@ -261,5 +261,11 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Mount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SC;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MC;
+        private System.Windows.Forms.DataGridViewTextBoxColumn LC;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ESC;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ELC;
     }
 }

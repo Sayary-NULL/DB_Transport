@@ -11,18 +11,39 @@ using System.Windows.Forms;
 
 namespace Test1.Forms
 {
-    public partial class FormCalcDateForClass : Form
+    public partial class FormCalcDateForClassRout : Form
     {
         public bool isClose = true;
         public string JSON = "";
 
-        public FormCalcDateForClass()
+        public FormCalcDateForClassRout()
         {
             InitializeComponent();
         }
 
+        bool CorrectNumber(string str1, string str2)
+        {
+            var rez1 = double.Parse(str1);
+            var rez2 = double.Parse(str2);
+
+            return rez1 <= rez2;
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
+            if(String.IsNullOrWhiteSpace(textBox1.Text) && String.IsNullOrWhiteSpace(textBox1.Text) && String.IsNullOrWhiteSpace(textBox1.Text) && String.IsNullOrWhiteSpace(textBox1.Text) && String.IsNullOrWhiteSpace(textBox1.Text) && 
+               String.IsNullOrWhiteSpace(textBox1.Text) && String.IsNullOrWhiteSpace(textBox1.Text) && String.IsNullOrWhiteSpace(textBox1.Text) && String.IsNullOrWhiteSpace(textBox1.Text) && String.IsNullOrWhiteSpace(textBox1.Text))
+            {
+                MessageBox.Show(this, "Не заполнено ни одно из полей!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (!CorrectNumber(textBox1.Text, textBox2.Text) || !CorrectNumber(textBox1.Text, textBox2.Text) || !CorrectNumber(textBox1.Text, textBox2.Text) || !CorrectNumber(textBox1.Text, textBox2.Text) || !CorrectNumber(textBox1.Text, textBox2.Text))
+            {
+                MessageBox.Show(this, "Одно из полей заполнено не корректно", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             Test1.Code.DayOfWeek classTransport = new Code.DayOfWeek();
 
             classTransport.SC = new List<double>
@@ -307,6 +328,25 @@ namespace Test1.Forms
                 textBox9.SelectionStart = textBox9.Text.Length;
                 MessageBox.Show(this, "Нельзя вводить больше 99!", "Ошибка ввода", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void Dont_enter_char(object sender, KeyPressEventArgs e)
+        {
+            if (Char.IsDigit(e.KeyChar) || e.KeyChar == ',')
+                return;
+            else if (e.KeyChar == 8)
+                return;
+            else if(e.KeyChar == 13)
+            {
+                e.Handled = true;
+                SelectNextControl(ActiveControl, true, true, true, true);
+            }
+            else e.Handled = true;
         }
     }
 }

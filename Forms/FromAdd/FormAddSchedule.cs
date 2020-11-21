@@ -12,9 +12,9 @@ using Test1.Code;
 
 namespace Test1.Forms
 {
-    public partial class FormNewRecord : Form
+    public partial class FormAddSchedule : Form
     {
-        public FormNewRecord()
+        public FormAddSchedule()
         {
             InitializeComponent();
             comboBox2.Items.Add("пярмой");
@@ -28,11 +28,33 @@ namespace Test1.Forms
 
             dateTimePicker1.Value = new DateTime(date.Year, 1, 1);
             dateTimePicker2.Value = new DateTime(date.Year, 12, 31);
+            button2.Focus();
+            textBox1.SelectionStart = 2;
+        }
+
+        public void SetIdRout(string id)
+        {
+            textBox12.Text = id;
+        }
+
+        public void SetNameRout(string name)
+        {
+            textBox13.Text = name;
+        }
+
+        public void SetNumberHistory(string number)
+        {
+            textBox2.Text = number;
+        }
+
+        public void SetNumberGraph(string number)
+        {
+            textBox1.Text = number;
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            FormCalcDateForClass calcDateForClass = new FormCalcDateForClass();
+            FormCalcDateForClassRout calcDateForClass = new FormCalcDateForClassRout();
             calcDateForClass.ShowDialog();
 
             if (!calcDateForClass.isClose)
@@ -79,12 +101,13 @@ namespace Test1.Forms
                 }
 
                 textBox14.Text = textBox14.Text.Remove(textBox14.Text.Length - 1);
+                button1.Enabled = true;
             }
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            FormCalcDateForClass calcDateForClass = new FormCalcDateForClass();
+            FormCalcDateForClassRout calcDateForClass = new FormCalcDateForClassRout();
             calcDateForClass.ShowDialog();
 
             if (!calcDateForClass.isClose)
@@ -95,7 +118,7 @@ namespace Test1.Forms
 
         private void button4_Click(object sender, EventArgs e)
         {
-            FormCalcDateForClass calcDateForClass = new FormCalcDateForClass();
+            FormCalcDateForClassRout calcDateForClass = new FormCalcDateForClassRout();
             calcDateForClass.ShowDialog();
 
             if (!calcDateForClass.isClose)
@@ -106,7 +129,7 @@ namespace Test1.Forms
 
         private void button5_Click(object sender, EventArgs e)
         {
-            FormCalcDateForClass calcDateForClass = new FormCalcDateForClass();
+            FormCalcDateForClassRout calcDateForClass = new FormCalcDateForClassRout();
             calcDateForClass.ShowDialog();
 
             if (!calcDateForClass.isClose)
@@ -117,7 +140,7 @@ namespace Test1.Forms
 
         private void button6_Click(object sender, EventArgs e)
         {
-            FormCalcDateForClass calcDateForClass = new FormCalcDateForClass();
+            FormCalcDateForClassRout calcDateForClass = new FormCalcDateForClassRout();
             calcDateForClass.ShowDialog();
 
             if (!calcDateForClass.isClose)
@@ -128,7 +151,7 @@ namespace Test1.Forms
 
         private void button7_Click(object sender, EventArgs e)
         {
-            FormCalcDateForClass calcDateForClass = new FormCalcDateForClass();
+            FormCalcDateForClassRout calcDateForClass = new FormCalcDateForClassRout();
             calcDateForClass.ShowDialog();
 
             if (!calcDateForClass.isClose)
@@ -139,7 +162,7 @@ namespace Test1.Forms
 
         private void button8_Click(object sender, EventArgs e)
         {
-            FormCalcDateForClass calcDateForClass = new FormCalcDateForClass();
+            FormCalcDateForClassRout calcDateForClass = new FormCalcDateForClassRout();
             calcDateForClass.ShowDialog();
 
             if (!calcDateForClass.isClose)
@@ -150,7 +173,7 @@ namespace Test1.Forms
 
         private void button9_Click(object sender, EventArgs e)
         {
-            FormCalcDateForClass calcDateForClass = new FormCalcDateForClass();
+            FormCalcDateForClassRout calcDateForClass = new FormCalcDateForClassRout();
             calcDateForClass.ShowDialog();
 
             if (!calcDateForClass.isClose)
@@ -167,6 +190,19 @@ namespace Test1.Forms
             {
                 textBox12.Text = rout.SelecetRout.ID.ToString();
                 textBox13.Text = rout.SelecetRout.Name;
+
+                using (SqlConnection connection = new SqlConnection(StaticValues.ConnectionString))
+                {
+                    SqlCommand com = new SqlCommand($"SELECT max(ID_История), max(ID_Номер_Расписания) From Вариант_рейса WHERE ID_Маршрут = {textBox12.Text}", connection);
+                    connection.Open();
+                    var rez = com.ExecuteReader();
+                    if (rez.HasRows)
+                    {
+                        rez.Read();
+                        SetNumberHistory(rez.GetInt32(0).ToString());
+                        SetNumberHistory((rez.GetInt32(1) + 1).ToString());
+                    }
+                }
             }
         }
 
@@ -174,6 +210,12 @@ namespace Test1.Forms
         {
             if (textBox12.Text == "")
             {
+                return;
+            }
+
+            if(dateTimePicker1.Value > dateTimePicker2.Value)
+            {
+                MessageBox.Show(this, "Даты пересекаються!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -239,6 +281,66 @@ namespace Test1.Forms
         private void button3_Click_1(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+            if(!double.TryParse(textBox3.Text, out _))
+            {
+                MessageBox.Show(this, "Ошибка преобразования, возможно вы ввели '.' вместо ','", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textBox3.Text = textBox3.Text.Remove(textBox3.Text.Length - 1);
+                textBox3.SelectionStart = textBox3.Text.Length;
+            }
+        }
+
+        private void Focus_button10(object sender, EventArgs e)
+        {
+            button10_Click(sender, e);
+        }
+
+        private void focus_to_button2(object sender, EventArgs e)
+        {
+            button2.Focus();
+        }
+
+        private void button4_Click_1(object sender, EventArgs e)
+        {
+            textBox4.Clear();
+        }
+
+        private void button5_Click_1(object sender, EventArgs e)
+        {
+            textBox5.Clear();
+        }
+
+        private void button6_Click_1(object sender, EventArgs e)
+        {
+            textBox6.Clear();
+        }
+
+        private void button7_Click_1(object sender, EventArgs e)
+        {
+            textBox7.Clear();
+        }
+
+        private void button8_Click_1(object sender, EventArgs e)
+        {
+            textBox8.Clear();
+        }
+
+        private void button9_Click_1(object sender, EventArgs e)
+        {
+            textBox9.Clear();
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            textBox10.Clear();
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            textBox11.Clear();
         }
     }
 }

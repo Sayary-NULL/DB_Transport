@@ -40,22 +40,8 @@ namespace Test1.Forms
 
                     ClassTransport classA = new ClassTransport();
 
-                    int index = i.Month;
-                    if (i.Month < 4 || i.Month == 4 && i.Day <= 15)
-                    {
-                        if (dict2.ContainsKey(index))
-                            classA = dict2[index];
-                    }
-                    else if (i.Month < 10 || i.Month == 10 && i.Day <= 15)
-                    {
-                        if (dict2.ContainsKey(index + 1))
-                            classA = dict2[index + 1];
-                    }
-                    else
-                    {
-                        if (dict2.ContainsKey(index + 2))
-                            classA = dict2[index + 2];
-                    }
+                    if (dict2.ContainsKey(i.Month))
+                        classA = dict2[i.Month];
 
                     switch (i.DayOfWeek)
                     {
@@ -103,12 +89,7 @@ namespace Test1.Forms
                             break;
                     }
 
-                    index = i.Month;
-                    if (i.Month < 4 || i.Month == 4 && i.Day <= 15)
-                        dict2[index] = classA;
-                    else if (i.Month < 10 || i.Month == 10 && i.Day <= 15)
-                        dict2[index + 1] = classA;
-                    else dict2[index + 2] = classA;
+                    dict2[i.Month] = classA;
                 }
             }
         }
@@ -117,9 +98,9 @@ namespace Test1.Forms
         {
             dataGridView1.Rows.Clear();
 
-            for (int i = 0; i < 14; i++)
+            for (int i = 0; i < 12; i++)
             {
-                dataGridView1.Rows.Add(Test1.Code.StaticValues.monthsmod[i]);
+                dataGridView1.Rows.Add(Test1.Code.StaticValues.months[i]);
             }
 
             foreach (var item in dict2)

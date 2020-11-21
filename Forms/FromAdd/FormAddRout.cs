@@ -236,6 +236,7 @@ namespace Test1.Forms
             if(textBox1.Text.Length > 10)
             {
                 textBox1.Text = textBox1.Text.Remove(textBox1.Text.Length - 1);
+                textBox1.SelectionStart = textBox1.Text.Length;
             }
             toolTip1.SetToolTip(label14, $"({textBox1.Text.Length} / 10 символов)");
         }
@@ -244,6 +245,7 @@ namespace Test1.Forms
         {
             button1_Click(sender, e);
         }
+
         private void textBox7_DoubleClick(object sender, EventArgs e)
         {
             button1_Click(sender, e);
@@ -272,5 +274,18 @@ namespace Test1.Forms
             }
         }
 
+        private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+
+        private void keyPress_next_tabIndex(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+            {
+                SelectNextControl(ActiveControl, true, true, true, true);
+                e.Handled = true;
+            }
+        }
     }
 }

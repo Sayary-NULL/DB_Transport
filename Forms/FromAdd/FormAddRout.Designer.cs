@@ -79,6 +79,7 @@
             this.textBox1.Size = new System.Drawing.Size(44, 20);
             this.textBox1.TabIndex = 1;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.keyPress_next_tabIndex);
             // 
             // textBox2
             // 
@@ -87,8 +88,9 @@
             this.textBox2.Location = new System.Drawing.Point(127, 106);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(44, 20);
-            this.textBox2.TabIndex = 3;
+            this.textBox2.TabIndex = 2;
             this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            this.textBox2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.keyPress_next_tabIndex);
             this.textBox2.Leave += new System.EventHandler(this.textBox2_Leave);
             // 
             // label2
@@ -105,9 +107,9 @@
             this.textBox3.Location = new System.Drawing.Point(12, 150);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(267, 20);
-            this.textBox3.TabIndex = 5;
+            this.textBox3.TabIndex = 3;
             this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
-            this.textBox3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox3_KeyPress);
+            this.textBox3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.keyPress_next_tabIndex);
             // 
             // label3
             // 
@@ -125,6 +127,7 @@
             this.textBox4.ReadOnly = true;
             this.textBox4.Size = new System.Drawing.Size(44, 20);
             this.textBox4.TabIndex = 7;
+            this.textBox4.TabStop = false;
             this.textBox4.Text = "УОП";
             // 
             // label4
@@ -143,6 +146,7 @@
             this.textBox5.ReadOnly = true;
             this.textBox5.Size = new System.Drawing.Size(44, 20);
             this.textBox5.TabIndex = 9;
+            this.textBox5.TabStop = false;
             this.textBox5.Text = "РТ";
             // 
             // label5
@@ -161,6 +165,7 @@
             this.textBox6.ReadOnly = true;
             this.textBox6.Size = new System.Drawing.Size(62, 20);
             this.textBox6.TabIndex = 11;
+            this.textBox6.TabStop = false;
             this.textBox6.DoubleClick += new System.EventHandler(this.textBox6_DoubleClick);
             // 
             // label6
@@ -179,6 +184,7 @@
             this.textBox7.ReadOnly = true;
             this.textBox7.Size = new System.Drawing.Size(58, 20);
             this.textBox7.TabIndex = 13;
+            this.textBox7.TabStop = false;
             this.textBox7.DoubleClick += new System.EventHandler(this.textBox7_DoubleClick);
             // 
             // label7
@@ -229,10 +235,11 @@
             this.button1.Location = new System.Drawing.Point(293, 13);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 14;
+            this.button1.TabIndex = 5;
             this.button1.Text = "Поиск";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.keyPress_next_tabIndex);
             // 
             // button3
             // 
@@ -240,20 +247,22 @@
             this.button3.Location = new System.Drawing.Point(32, 348);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(113, 23);
-            this.button3.TabIndex = 16;
+            this.button3.TabIndex = 6;
             this.button3.Text = "Добавить маршрут";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.button3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.keyPress_next_tabIndex);
             // 
             // button4
             // 
             this.button4.Location = new System.Drawing.Point(151, 348);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(198, 23);
-            this.button4.TabIndex = 17;
+            this.button4.TabIndex = 7;
             this.button4.Text = "Отменить добавление маршрута";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.button4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.keyPress_next_tabIndex);
             // 
             // label9
             // 
@@ -273,6 +282,7 @@
             this.textBox8.ReadOnly = true;
             this.textBox8.Size = new System.Drawing.Size(54, 20);
             this.textBox8.TabIndex = 20;
+            this.textBox8.TabStop = false;
             this.textBox8.Enter += new System.EventHandler(this.textBox8_Enter);
             // 
             // label10
@@ -304,7 +314,9 @@
             this.comboBox1.Location = new System.Drawing.Point(188, 238);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 22;
+            this.comboBox1.TabIndex = 4;
+            this.comboBox1.TabStop = false;
+            this.comboBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.keyPress_next_tabIndex);
             // 
             // comboBox2
             // 
@@ -314,6 +326,7 @@
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(159, 21);
             this.comboBox2.TabIndex = 23;
+            this.comboBox2.TabStop = false;
             this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
             // comboBox3
@@ -324,6 +337,7 @@
             this.comboBox3.Name = "comboBox3";
             this.comboBox3.Size = new System.Drawing.Size(121, 21);
             this.comboBox3.TabIndex = 24;
+            this.comboBox3.TabStop = false;
             this.comboBox3.SelectedIndexChanged += new System.EventHandler(this.comboBox3_SelectedIndexChanged);
             // 
             // label12
