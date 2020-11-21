@@ -132,13 +132,11 @@ namespace Test1.Forms
                         {
                             ID = rez.GetInt32(0),
                             ID_History = rez.GetInt32(1),
-                            ID_Contract = rez.GetInt32(2),
-                            Registr = rez.GetString(3),
-                            Poryd = rez.GetString(4),
-                            TypeOfRegular = rez.GetString(5),
-                            TypeOnOut = rez.GetString(6),
-                            Name = rez.GetString(7),
-                            Type_communication = rez.GetString(8)
+                            Poryd = rez.GetString(2),
+                            TypeOfRegular = rez.GetString(3),
+                            TypeOnOut = rez.GetString(4),
+                            Name = rez.GetString(5),
+                            Type_communication = rez.GetString(6)
                         };
 
                         loadData.LoadDataToGridRout(rout);
@@ -226,8 +224,7 @@ namespace Test1.Forms
                         cont.Nomber_Contract = rez.GetString(1);
                         cont.With = rez.GetDateTime(2);
                         cont.By = rez.GetDateTime(3);
-                        cont.money = rez.GetDecimal(4);
-                        cont.INN = rez.GetInt64(5);
+                        //cont.INN = rez.GetInt64(4);
 
                         loadData.LoadDataToGridContract(cont);
                         Contracts.Add(cont);

@@ -30,19 +30,6 @@ namespace Test1.Code
             idhist.Visible = false;
             idhist.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
 
-            DataGridViewColumn idcontract = new DataGridViewTextBoxColumn();
-            idcontract.Name = "ID_contract";
-            idcontract.HeaderText = "ID Договор";
-            idcontract.Width = 75;
-            idcontract.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-
-            DataGridViewColumn reestrnumber = new DataGridViewTextBoxColumn();
-            reestrnumber.Name = "reestr";
-            reestrnumber.HeaderText = "Регистрационный номер";
-            reestrnumber.HeaderCell.Style.WrapMode = DataGridViewTriState.True;
-            reestrnumber.Width = 100;
-            reestrnumber.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-
             DataGridViewColumn pornumber = new DataGridViewTextBoxColumn();
             pornumber.Name = "poryd";
             pornumber.HeaderText = "Порядковый номер";
@@ -84,8 +71,6 @@ namespace Test1.Code
             dGVMain.Columns.Add(name);
             dGVMain.Columns.Add(typemess);
             dGVMain.Columns.Add(idhist);
-            dGVMain.Columns.Add(idcontract);
-            dGVMain.Columns.Add(reestrnumber);
             dGVMain.Columns.Add(pornumber);
             dGVMain.Columns.Add(typepere);
             dGVMain.Columns.Add(typeofinout);
@@ -341,8 +326,6 @@ namespace Test1.Code
             var ind = dGVMain.Rows.Add(rout.ID.ToString());
             dGVMain["ID", ind].Value = rout.ID;
             dGVMain["ID_hist", ind].Value = rout.ID_History;
-            dGVMain["ID_contract", ind].Value = rout.ID_Contract;
-            dGVMain["reestr", ind].Value = rout.Registr;
             dGVMain["poryd", ind].Value = rout.Poryd;
             dGVMain["typepere", ind].Value = rout.TypeOfRegular;
             dGVMain["typeofinout", ind].Value = rout.TypeOnOut;
