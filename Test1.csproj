@@ -49,41 +49,59 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Code\LoadDataToMainGrid.cs" />
-    <Compile Include="Forms\FormAddContract.cs">
+    <Compile Include="Forms\FromAdd\FormAddContract.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormAddContract.Designer.cs">
+    <Compile Include="Forms\FromAdd\FormAddContract.Designer.cs">
       <DependentUpon>FormAddContract.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormAddContractor.cs">
+    <Compile Include="Forms\FromAdd\FormAddContractor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormAddContractor.Designer.cs">
+    <Compile Include="Forms\FromAdd\FormAddContractor.Designer.cs">
       <DependentUpon>FormAddContractor.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormAddRout.cs">
+    <Compile Include="Forms\FromAdd\FormAddRout.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormAddRout.Designer.cs">
+    <Compile Include="Forms\FromAdd\FormAddRout.Designer.cs">
       <DependentUpon>FormAddRout.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormSearchConractor.cs">
+    <Compile Include="Forms\FormLoadData\FormLoadDataFromExcel.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormSearchConractor.Designer.cs">
+    <Compile Include="Forms\FormLoadData\FormLoadDataFromExcel.Designer.cs">
+      <DependentUpon>FormLoadDataFromExcel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormLoadData\FormLoadDataFromExcelSchelude.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormLoadData\FormLoadDataFromExcelSchelude.Designer.cs">
+      <DependentUpon>FormLoadDataFromExcelSchelude.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormSearch\FormSearchConractor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormSearch\FormSearchConractor.Designer.cs">
       <DependentUpon>FormSearchConractor.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormSearchConrtact.cs">
+    <Compile Include="Forms\FormSearch\FormSearchConrtact.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormSearchConrtact.Designer.cs">
+    <Compile Include="Forms\FormSearch\FormSearchConrtact.Designer.cs">
       <DependentUpon>FormSearchConrtact.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormSearchRout.cs">
+    <Compile Include="Forms\FormSearch\FormSearchRout.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormSearchRout.Designer.cs">
+    <Compile Include="Forms\FormSearch\FormSearchRout.Designer.cs">
       <DependentUpon>FormSearchRout.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FromPrilojenie3\FormPrilo3Contract.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FromPrilojenie3\FormPrilo3Contract.Designer.cs">
+      <DependentUpon>FormPrilo3Contract.cs</DependentUpon>
     </Compile>
     <Compile Include="Main.cs" />
     <Compile Include="Code\ClassTransport.cs" />
@@ -97,16 +115,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DB_Resource.resx</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormCalcDateForClass.cs">
+    <Compile Include="Forms\FormUtilits\FormCalcDateForClassRout.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormCalcDateForClass.Designer.cs">
-      <DependentUpon>FormCalcDateForClass.cs</DependentUpon>
+    <Compile Include="Forms\FormUtilits\FormCalcDateForClassRout.Designer.cs">
+      <DependentUpon>FormCalcDateForClassRout.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormComp.cs">
+    <Compile Include="Forms\FromPrilojenie3\FormComp.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormComp.Designer.cs">
+    <Compile Include="Forms\FromPrilojenie3\FormComp.Designer.cs">
       <DependentUpon>FormComp.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FormLogin.cs">
@@ -122,17 +140,17 @@
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
     <Compile Include="Code\StaticValues.cs" />
-    <Compile Include="Forms\FormNewRecord.cs">
+    <Compile Include="Forms\FromAdd\FormAddSchedule.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormNewRecord.Designer.cs">
-      <DependentUpon>FormNewRecord.cs</DependentUpon>
+    <Compile Include="Forms\FromAdd\FormAddSchedule.Designer.cs">
+      <DependentUpon>FormAddSchedule.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormPrilo3.cs">
+    <Compile Include="Forms\FromPrilojenie3\FormPrilo3Routs.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormPrilo3.Designer.cs">
-      <DependentUpon>FormPrilo3.cs</DependentUpon>
+    <Compile Include="Forms\FromPrilojenie3\FormPrilo3Routs.Designer.cs">
+      <DependentUpon>FormPrilo3Routs.cs</DependentUpon>
     </Compile>
     <Compile Include="Settings1.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -141,6 +159,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Office.Interop.Word, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Office.Interop.Word.15.0.4797.1003\lib\net20\Microsoft.Office.Interop.Word.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
@@ -163,20 +182,26 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>DB_Resource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormAddContract.resx">
+    <EmbeddedResource Include="Forms\FromAdd\FormAddContract.resx">
       <DependentUpon>FormAddContract.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormAddContractor.resx">
+    <EmbeddedResource Include="Forms\FromAdd\FormAddContractor.resx">
       <DependentUpon>FormAddContractor.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormAddRout.resx">
+    <EmbeddedResource Include="Forms\FromAdd\FormAddRout.resx">
       <DependentUpon>FormAddRout.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormCalcDateForClass.resx">
-      <DependentUpon>FormCalcDateForClass.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\FormUtilits\FormCalcDateForClassRout.resx">
+      <DependentUpon>FormCalcDateForClassRout.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormComp.resx">
+    <EmbeddedResource Include="Forms\FromPrilojenie3\FormComp.resx">
       <DependentUpon>FormComp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormLoadData\FormLoadDataFromExcel.resx">
+      <DependentUpon>FormLoadDataFromExcel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormLoadData\FormLoadDataFromExcelSchelude.resx">
+      <DependentUpon>FormLoadDataFromExcelSchelude.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>
@@ -184,19 +209,22 @@
     <EmbeddedResource Include="Forms\FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormNewRecord.resx">
-      <DependentUpon>FormNewRecord.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\FromAdd\FormAddSchedule.resx">
+      <DependentUpon>FormAddSchedule.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormPrilo3.resx">
-      <DependentUpon>FormPrilo3.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\FromPrilojenie3\FormPrilo3Contract.resx">
+      <DependentUpon>FormPrilo3Contract.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormSearchConractor.resx">
+    <EmbeddedResource Include="Forms\FromPrilojenie3\FormPrilo3Routs.resx">
+      <DependentUpon>FormPrilo3Routs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormSearch\FormSearchConractor.resx">
       <DependentUpon>FormSearchConractor.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormSearchConrtact.resx">
+    <EmbeddedResource Include="Forms\FormSearch\FormSearchConrtact.resx">
       <DependentUpon>FormSearchConrtact.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormSearchRout.resx">
+    <EmbeddedResource Include="Forms\FormSearch\FormSearchRout.resx">
       <DependentUpon>FormSearchRout.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
